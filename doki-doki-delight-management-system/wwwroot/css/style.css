@@ -1,0 +1,38 @@
+﻿body {
+    background-color: #ffaec9;      
+}
+
+.title {
+    font-size: 180px;
+    font-weight: bold;
+    text-decoration-line: underline;
+    text-decoration-color: #e29578;
+    text-decoration-thickness: 8px;
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -110%);
+    text-align: center;
+    line-height: 100%;
+}
+
+#homeSlideshow{
+    vertical-align: middle;
+    transform: translate(0%, 180%);
+   }
+
+#homeButton{
+    vertical-align: middle;
+    width: 30%;
+    transform: translate(0%, 1485%);
+}   
+
+.btn-primary{
+    background-color: #e29578;
+    border: black;
+}
+
+.btn-primary:hover{
+    background-color: #f6c5af;
+    color:black;
+}
