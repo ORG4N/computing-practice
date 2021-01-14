@@ -2,8 +2,7 @@
     background-color: #ffaec9;      
 }
 
-.title {
-    font-size: 180px;
+h1 {
     font-size: 9.5vw;
     font-weight: bold;
     text-decoration-line: underline;
@@ -11,10 +10,60 @@
     text-decoration-thickness: 8px;
     text-align: center;
     line-height: 100%;
-}  
-  
+} 
 
-#homeButton{
+h2{
+    font-size: 7.5vw;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100%; 
+}
+
+h3{
+    font-size: 1.7vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.row{
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+#title{
+    background-color: white;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 20px;
+}
+
+.card-title{
+    text-align: center;
+}
+
+.card{
+    background-color: #ffffff;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+}
+
+#headingBox{
+    background-color: #c8bfe7;
+    text-align: center;
+    transform: translate(0px, -28px);
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#card{
+    margin:0;
+}
+
+#continueButton{
     width: 50%;
 }   
 
