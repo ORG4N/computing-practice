@@ -2,17 +2,17 @@
 <html>
 
 <body>
-
-    <main>
-
-        <!-- Draw the title-->
-        <div class="container-flex" id="title">
-            <div class="row align-self-end">
-                <div class="col-12">
-                    <h2> DOKI-DOKI DELIGHT </h2>
-                </div>    
-            </div>
+    <!-- Draw the title-->
+    <div class="container-flex" id="title">
+        <div class="row align-self-end">
+            <div class="col-12">
+                <h2> DOKI-DOKI DELIGHT </h2>
+            </div>    
         </div>
+    </div>
+
+
+    <div id="reservation" class="animate__animated animate__slideInLeft">
 
         <!-- Draw a sub-headig that overlaps with title-->
         <div class="container"> 
@@ -23,47 +23,40 @@
             </div>
         </div>    
 
-        <div class="container">
+        <div class="container jumbotron" style="padding-top:15px">
+            <p class="lead" style="text-align: center;">Please fill out this form with your personal information to create your reservation. </p>
+            <hr class="my-4">
             <form>
                 <div class="row">
 
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputForename">Forename</label>
-                            <input type="forename" class="form-control" id="inputForename">
+                            <label for="inputForename">Forename:</label>
+                            <input type="forename" class="form-control" id="inputForename" placeholder="John">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputSurname">Surname</label>
-                            <input type="surname" class="form-control" id="inputSurname">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="inputSurname">Telephone</label>
-                            <input type="surname" class="form-control" id="inputSurname">
-                        </div>
-                    </div>
-
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="inputSurname">Email</label>
-                            <input type="surname" class="form-control" id="inputSurname">
+                            <label for="inputSurname">Surname:</label>
+                            <input type="surname" class="form-control" id="inputSurname" placeholder="Doe" >
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
+
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputSurname">Occupants</label>
-                            <input type="surname" class="form-control" id="inputSurname">
+                            <label for="inputTelephone">Telephone:</label>
+                            <input type="telephone" class="form-control" id="inputTelephone" placeholder="12345 123456">
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="inputEmail">Email:</label>
+                            <input type="email" class="form-control" id="inputEmail" placeholder="name@email">
                         </div>
                     </div>
                 </div>
@@ -71,29 +64,50 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputSurname">Date</label>
-                            <input type="surname" class="form-control" id="inputSurname">
+                            <label for="inputOccupants">Occupants:</label>
+                            <select type="ocupants" class="form-control" id="inputOccupants">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                            </select>
+                            <small id="emailHelp" class="form-text text-muted">Reservations are limited to 6 persons due to pandemic regulations.</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="inputDate">Date:</label>
+                            <input type="date" class="form-control" id="inputDate">
                         </div>
                     </div>
                 
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputSurname">Time</label>
-                            <input type="surname" class="form-control" id="inputSurname">
+                            <label for="inputTime">Time:</label>
+                            <input type="time" class="form-control" id="inputTime">
                         </div>
                     </div>
                 </div>
 
+                <br>
+
                 <div class="row">
-                    <div class="col">
+                    <div class="col-9">
                         <button type="submit" class="btn btn-primary btn-block">Submit</button>
                     </div>
+                    <div class="col-3">
+                        <button type="submit" class="btn btn-danger btn-block">Clear</button>
+                    </div>
+
                 </div>
             </form>
         </div>
-
-    </main>
-
+    </div>>
 </body>
 
 </html>

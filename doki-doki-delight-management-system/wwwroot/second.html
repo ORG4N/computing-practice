@@ -3,16 +3,16 @@
 
 <body>
 
-    <main>
-
-        <!-- Draw the new title-->
-        <div class="container-flex" id="title">
-            <div class="row align-self-end">
-                <div class="col-12">
-                    <h2> DOKI-DOKI DELIGHT </h2>
-                </div>    
-            </div>
+    <!-- Draw the new title-->
+    <div class="container-flex animate__animated animate__slideInLeft animate__slower" id="title">
+        <div class="row align-self-end">
+            <div class="col-12">
+                <h2> DOKI-DOKI DELIGHT </h2>
+            </div>    
         </div>
+    </div>
+
+    <div id="userselect" class="animate__animated animate__slideInLeft animate__delay-2s">
 
         <!-- Draw a sub-headig that overlaps with title-->
         <div class="container"> 
@@ -23,7 +23,6 @@
             </div>
         </div>
 
-
         <!-- Draw the newly requested elements-->
         <div class="container-fluid">
             <div class="row">
@@ -33,25 +32,24 @@
                     <div class="card">
                         <img class="card-img-top" src="img/placeholdericon1.png" alt="Customer">
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary btn-block" id="customerButton" style="font-size: 1vw;">CUSTOMER</a>
+                            <a href="#" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s" id="customerButton" style="font-size: 1vw;">CUSTOMER</a>
                         </div>
                     </div>
                 </div>
 
 
                 <!-- Employee 'card' element with button for logging in-->
-                <div class="col-3 ">
+                <div class="col-3">
                     <div class="card">
                         <img class="card-img-top" src="img/placeholdericon2.png" alt="Employee">
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary btn-block" id="employeeButton" style="font-size: 1vw;">EMPLOYEE</a>
+                            <a href="#" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s" id="employeeButton" style="font-size: 1vw;">EMPLOYEE</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
-
+    </div>
 
 </body>
 
