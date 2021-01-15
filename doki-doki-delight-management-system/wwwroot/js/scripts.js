@@ -9,7 +9,7 @@ $(document).ready(function () {
 
         element.addEventListener('animationend', () => {                                // wait until animation ends and load new content
             console.log('Animation ended');
-            loadDoc('second');
+            loadDoc('userselect');
         });
     });
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
 // Function for loading different html files
 function loadDoc(page){
 
-    if (page=='second')     {$('main').load('second.html');}        // Load the User Select page
+    if (page=='userselect')     {$('main').load('userselect.html');}        // Load the User Select page
 
     else if (page=='reservation'){$('main').load('reservation.html');}   // Load the Reservation page
 
