@@ -32,7 +32,7 @@ $(document).ready(function () {
         const element = document.querySelector('#userselect');
         element.classList.add('animate__animated','animate__slideOutRight');
 
-        lelement.addEventListener('animationend', () => {
+        element.addEventListener('animationend', () => {
             console.log('Animation ended');
             loadDoc('signIn');
         });
