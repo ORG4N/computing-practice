@@ -13,23 +13,65 @@
 
 
 
-<body>
-    
+<body style="background-color: #ffaec9;">
+
     <!-- Top and bottom horizontal bars - make the page look nice -->
     <header class="container-flex fixed-top">
         <div class="navbar navbar-light" style = "background-color: #e492ad;"></div>
-    </header>>
+    </header>
     
     <footer class="container-flex fixed-bottom">
         <div class="navbar navbar-light" style = "background-color: #e492ad;"></div>
     </footer>
-
     
+
+    <!-- Sidebar for webpage navigation-->
+    <div class="container">
+        <div class="row">
+            <div class="d-none d-block sidebar border-primary">
+                <div class="nav flex-column">
+
+                    <li class="nav-item sidebar-text">
+                        <a class="nav-link" href="#" id="homeButton">
+                            <span title="Home">
+                                <i data-feather="home"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item sidebar-text">
+                        <a class="nav-link" href="#" id="continueButton">
+                            <span title="User selection">
+                                <i data-feather="users"></i>
+                            </span>
+                        </a>
+                    </li>
+        
+                    <li class="nav-item sidebar-text">
+                        <a class="nav-link" href="#" id="customerButton">
+                            <span title="Create reservation">
+                                <i data-feather="coffee"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item sidebar-text">
+                        <a class="nav-link" href="#" id="employeeButton">
+                            <span title="Staff">
+                                <i data-feather="tool"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main>
-        <div id="index">
-            <div class="content">
+        <div id="page">
             <!-- Draw the BIG title to the screen-->
-            <div class="container animate__animated animate__fadeInLeft animate__slower" style="margin-top: 5%;">
+            <div class="container animate__animated animate__fadeInLeft animate__slower" style="margin-top: 5%; margin-bottom: 5%;">
                 <div class="row align-items-center">
                     <div class="col-12">
                         <h1>DOKI-DOKI <br> DELIGHT</h1>
@@ -38,7 +80,7 @@
             </div>
 
             <!-- Image slideshow with indicators and controls-->
-            <div class="container" style="margin-top: 5%;">
+            <div class="container animate__animated animate__fadeIn animate__delay-2s" style="margin-top: 5%">
                 <div class="row align-items-center">
                     <div class="col-12 ">
                         <div id= "carouselExampleControls" class = "carousel slide" data-ride="carousel" data-interval="10000";
@@ -84,7 +126,9 @@
             <div style="transform: translate(0px, -15px);" class="container">
                 <div class="row align-items-center">
                     <div class="col text-center">
-                        <button type="button" class="btn btn-primary animate__animated animate__bounceInUp animate__slower animate__delay-2s " id="continueButton" href="#">Click here to continue...</button>
+                        <button type="button" class="btn btn-primary animate__animated animate__bounceInUp animate__slower animate__delay-2s " id="continueButton" href="#">
+                            Click here to continue...
+                        </button>
                     </div>
                 </div>
             </div>
@@ -96,7 +140,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="js/scripts.js"></script>
+
+    <script>
+        feather.replace()
+    </script>
 
 </body>
 

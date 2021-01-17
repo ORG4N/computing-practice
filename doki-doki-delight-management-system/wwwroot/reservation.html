@@ -2,17 +2,19 @@
 <html>
 
 <body>
-    <!-- Draw the title-->
-    <div class="container-flex" id="title">
-        <div class="row align-self-end">
-            <div class="col-12">
-                <h2> DOKI-DOKI DELIGHT </h2>
-            </div>    
+ 
+    <div id="page" class="animate__animated animate__slideInLeft">
+
+        <!-- Draw the title-->
+        <div class="container-flex">
+            <div class="title animate__animated animate__slideInLeft animate__slower">
+                <div class="row align-self-end">
+                    <div class="col-12">
+                        <h2> DOKI-DOKI DELIGHT </h2>
+                    </div>    
+                </div>
+            </div>
         </div>
-    </div>
-
-
-    <div id="reservation" class="animate__animated animate__slideInLeft">
 
         <!-- Draw a sub-headig that overlaps with title-->
         <div class="container"> 
@@ -98,16 +100,21 @@
 
                 <div class="row">
                     <div class="col-9">
-                        <button type="submit" class="btn btn-primary btn-block">Submit Reservation</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="reservationButton"> 
+                            <i data-feather="check"></i>
+                            Submit Reservation
+                        </button>
                     </div>
                     <div class="col-3">
-                        <button type="submit" class="btn btn-danger btn-block">Clear</button>
+                        <button type="submit" class="btn btn-danger btn-block" id="clearButton">
+                            <i data-feather="alert-circle" style="vertical-align: middle;"></i>
+                            Clear</button>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>>
+
 </body>
 
 </html>

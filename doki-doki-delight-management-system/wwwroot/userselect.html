@@ -3,16 +3,19 @@
 
 <body>
 
-    <!-- Draw the new title-->
-    <div class="container-flex animate__animated animate__slideInLeft animate__slower" id="title">
-        <div class="row align-self-end">
-            <div class="col-12">
-                <h2> DOKI-DOKI DELIGHT </h2>
-            </div>    
-        </div>
-    </div>
+    <div id="page" class="animate__animated animate__slideInLeft animate__delay-2s">
 
-    <div id="userselect" class="animate__animated animate__slideInLeft animate__delay-2s">
+        <!-- Draw the new title-->
+        <div class="container-flex">
+            <div class="title animate__animated animate__slideInLeft animate__slower">
+                <div class="row align-self-end">
+                    <div class="col-12">
+                        <h2> DOKI-DOKI DELIGHT </h2>
+                    </div>    
+                </div>
+            </div>
+        </div>
+
 
         <!-- Draw a sub-headig that overlaps with title-->
         <div class="container"> 
@@ -32,7 +35,9 @@
                     <div class="card">
                         <img class="card-img-top" src="img/placeholdericon1.png" alt="Customer">
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s" id="customerButton" style="font-size: 1vw;">CUSTOMER</a>
+                            <button type="button" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s " id="customerButton" href="#" style="font-size: 1vw;">
+                                CUSTOMER
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -43,13 +48,16 @@
                     <div class="card">
                         <img class="card-img-top" src="img/placeholdericon2.png" alt="Employee">
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s" id="employeeButton" style="font-size: 1vw;">EMPLOYEE</a>
+                            <button type="button" class="btn btn-primary btn-block animate__animated animate__bounce animate__delay-3s " id="employeeButton" href="#" style="font-size: 1vw;">
+                                EMPLOYEE
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

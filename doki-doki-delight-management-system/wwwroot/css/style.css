@@ -31,13 +31,46 @@ h3{
     margin-right:auto;
 }
 
-#title{
+.title{
     background-color: white;
     padding-top: 50px;
     padding-bottom: 50px;
-    margin-top: 20px;
+    margin-top: 3%;
 }
 
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    transform: translate(0px, 40px);
+    opacity: 50%;
+  }  
+  
+.nav-item{
+    background-color: #e492ad;
+    opacity: 100%;
+}
+  
+  .sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: black;
+  }
+  
+  
+  .sidebar .nav-link:hover .feather,
+  .sidebar .nav-link.active .feather {
+    color: inherit;
+  }  
+  
 .card-title{
     text-align: center;
 }
