@@ -1,8 +1,12 @@
+
 $(document).ready(function () {
+
+    $(function(){
+        $("#sidebar-placeholder").load('nav.html');
+    });
 
     // If user clicks the sidebar home button, send back to front page
     $(document).on("click","#homeButton",function(){
-
         const element = document.querySelector('#page');
         element.classList.add('animate__animated','animate__slideOutRight');           // add an animation to the index div
 
@@ -56,16 +60,15 @@ $(document).ready(function () {
     $(document).on("click","#reservationButton",function(){
 
         document.querySelector('form').submit();
+        console.log("button pressed");
 
     });
-
-
 });
 
 // Function for loading different html files
 function loadDoc(page){
 
-    if (page=='home'){$('main').load('index.html');}        // Load the User Select page
+    if (page=='home'){$('main').load('index.html');}            // Load the Home page
 
     else if (page=='userselect'){$('main').load('userselect.html');}        // Load the User Select page
 
