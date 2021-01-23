@@ -51,15 +51,17 @@ $(document).ready(function () {
         });
     });
 
+    // If user clicks this button then clear all input form data
     $(document).on("click","#clearButton",function(){
 
         document.querySelector('form').reset();
 
     });
 
+    // If user clciks this button then submit the booking details for validation
     $(document).on("click","#reservationButton",function(){
 
-        document.querySelector('form').submit();
+        formValidate();
         console.log("button pressed");
 
     });
@@ -75,4 +77,30 @@ function loadDoc(page){
     else if (page=='reservation'){$('main').load('reservation.html');}   // Load the Reservation page
 
     else if (page=='signIn'){$('main').load('signIn.html');}        // Load the Employee Sign In page
+}
+
+function formValidate(){
+
+    var fields = ["inputForename", "inputSurname", "inputTel", "inputEmail", "inputOccupants", "inputDate", "inputTime"];
+    var input;
+
+    for (var i=0; i<fields.length; i++){
+
+        input = document.getElementById(fields[i]);
+
+        if(input.value=="" || input.value=="null"){
+            input.validationMessage;
+            console.log("Empty input:", fields[i]);
+        }
+
+        if(!input.checkValidity()){
+            input.validationMessage;
+            console.log("Invalid input:", fields[i]);
+        }
+        
+        else{
+            reservation.submit();
+        }
+
+    }
 }

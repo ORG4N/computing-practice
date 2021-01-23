@@ -28,20 +28,21 @@
         <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px">
             <p class="lead" style="text-align: center;">Please fill out this form with your personal information to create your reservation. </p>
             <hr class="my-4">
-            <form class="needs-validation" novalidate>
+
+            <form name="reservation">
                 <div class="row">
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputForename">Forename:</label>
-                            <input type="forename" class="form-control" id="inputForename" placeholder="John">
+                            <input type="text" class="form-control" id="inputForename" maxlength="20" placeholder="John">
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputSurname">Surname:</label>
-                            <input type="surname" class="form-control" id="inputSurname" placeholder="Doe" >
+                            <input type="text" class="form-control" id="inputSurname" maxlength="20" placeholder="Doe" >
                         </div>
                     </div>
                 </div>
@@ -50,8 +51,8 @@
 
                     <div class="col">
                         <div class="form-group">
-                            <label for="inputTelephone">Telephone:</label>
-                            <input type="telephone" class="form-control" id="inputTelephone" placeholder="12345 123456">
+                            <label for="inputTel">Telephone:</label>
+                            <input type="tel" class="form-control" id="inputTel" placeholder="12345 123456">
                         </div>
                     </div>
 
@@ -67,7 +68,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputOccupants">Occupants:</label>
-                            <select type="ocupants" class="form-control" id="inputOccupants">
+                            <select type="number" class="form-control" id="inputOccupants">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -105,6 +106,8 @@
                             Submit Reservation
                         </button>
                     </div>
+
+                    <p id="lel"></p>
                     <div class="col-3">
                         <button type="submit" class="btn btn-danger btn-block" id="clearButton">
                             <i data-feather="alert-circle" style="vertical-align: middle;"></i>
@@ -113,7 +116,7 @@
                 </div>
             </form>
         </div>
-    </div>>
+    </div>
 
 </body>
 
