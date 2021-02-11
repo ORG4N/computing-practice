@@ -10,4 +10,16 @@
     <Folder Include="wwwroot\img\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\data\Users.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

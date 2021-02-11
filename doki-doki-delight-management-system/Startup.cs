@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using doki_doki_delight_management_system.Services;
+
 
 namespace doki_doki_delight_management_system
 {
@@ -16,6 +18,8 @@ namespace doki_doki_delight_management_system
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization();
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,13 +35,18 @@ namespace doki_doki_delight_management_system
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            /*app.UseEndpoints(endpoints =>
+
+            // Extra stuff from https://docs.microsoft.com/en-us/aspnet/core/tutorials/web-api-javascript?view=aspnetcore-5.0
+            app.UseHttpsRedirection();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
-            });*/
+                endpoints.MapControllers();
+            });
+
+            UsersService.Init();
+
         }
     }
 }
