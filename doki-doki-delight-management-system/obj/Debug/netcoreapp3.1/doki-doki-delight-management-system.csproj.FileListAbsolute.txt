@@ -10,11 +10,13 @@ E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-sys
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.csprojAssemblyReference.cache
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.AssemblyInfoInputs.cache
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.AssemblyInfo.cs
-E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.csproj.CoreCompileInputs.cache
-E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.MvcApplicationPartsAssemblyInfo.cache
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.RazorTargetAssemblyInfo.cache
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\staticwebassets\doki-doki-delight-management-system.StaticWebAssets.Manifest.cache
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\staticwebassets\doki-doki-delight-management-system.StaticWebAssets.xml
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.dll
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.pdb
 E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.genruntimeconfig.cache
+E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.csproj.CoreCompileInputs.cache
+E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.MvcApplicationPartsAssemblyInfo.cache
+E:\Projects\doki-doki-delight-management-system\doki-doki-delight-management-system\obj\Debug\netcoreapp3.1\doki-doki-delight-management-system.csproj.CopyComplete

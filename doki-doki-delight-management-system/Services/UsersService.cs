@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Newtonsoft.Json;
 using doki_doki_delight_management_system.Models;
 
 namespace doki_doki_delight_management_system.Services
@@ -10,7 +11,8 @@ namespace doki_doki_delight_management_system.Services
     public class UsersService
     {
         private static List<User> data = new List<User>();
-        public static int count = 0;
+        public static Settings settings;
+        public static int count;
 
 
         // Initialise a list of users by reading them from the csv file
@@ -48,6 +50,13 @@ namespace doki_doki_delight_management_system.Services
             }
 
             // Read the ID count from json file
+            using (StreamReader r = new StreamReader("wwwroot/data/settings.json"))
+            {
+                var jsonSettings = r.ReadToEnd();
+                settings = JsonConvert.DeserializeObject<Settings>(jsonSettings);
+
+                count = settings.UserID;
+            }
         }
 
 
@@ -81,7 +90,17 @@ namespace doki_doki_delight_management_system.Services
             string id = count.ToString(format);
             count++;
 
+            UpdateCount();
+
             return id;
+        }
+
+        public void UpdateCount()
+        {
+            settings.UserID = count;
+
+            string output = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            File.WriteAllText("wwwroot/data/settings.json", output);
         }
     }
 }

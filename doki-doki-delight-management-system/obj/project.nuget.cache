@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ijhVZ4vDrtey6pOGGbs0lmt0cv1KX+ZQPBUXJ42WQtVh2MMXcCNTYJFs6PN63A1wE8j393Pf0aeMQGErrTcC7w==",
+  "dgSpecHash": "GiN8G/36MZS06XnwUgRoftBS10GSLhx2Q/8wkgXXwFCgNKmcaHS/NOeFhcsH6iVA42B1rKS0Vwk+wVgcrRRxRQ==",
   "success": true,
   "projectFilePath": "E:\\Projects\\doki-doki-delight-management-system\\doki-doki-delight-management-system\\doki-doki-delight-management-system.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\datgu\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
