@@ -2,7 +2,7 @@
 <html>
 
 <body>
- 
+
     <div id="page" class="animate__animated animate__slideInLeft">
 
         <!-- Draw the title-->
@@ -11,19 +11,19 @@
                 <div class="row align-self-end">
                     <div class="col-12">
                         <h2> DOKI-DOKI DELIGHT </h2>
-                    </div>    
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Draw a sub-headig that overlaps with title-->
-        <div class="container"> 
+        <div class="container">
             <div class="row align-self-end">
-                <div class="col-12" id ="headingBox">
-                    <h3>BOOK A RESERVATION:</h3>           
-                </div>    
+                <div class="col-12" id="headingBox">
+                    <h3>BOOK A RESERVATION:</h3>
+                </div>
             </div>
-        </div>    
+        </div>
 
         <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px">
             <p class="lead" style="text-align: center;">Please fill out this form with your personal information to create your reservation. </p>
@@ -42,7 +42,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputSurname">Surname:</label>
-                            <input type="text" class="form-control" id="inputSurname" maxlength="20" placeholder="Doe" >
+                            <input type="text" class="form-control" id="inputSurname" maxlength="20" placeholder="Doe">
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                             <input type="date" class="form-control" id="inputDate">
                         </div>
                     </div>
-                
+
                     <div class="col">
                         <div class="form-group">
                             <label for="inputTime">Time:</label>
@@ -101,7 +101,7 @@
 
                 <div class="row">
                     <div class="col-9">
-                        <button type="submit" class="btn btn-primary btn-block" id="reservationButton"> 
+                        <button type="submit" class="btn btn-primary btn-block" id="reservationButton">
                             <i data-feather="check"></i>
                             Submit Reservation
                         </button>
@@ -111,12 +111,17 @@
                     <div class="col-3">
                         <button type="submit" class="btn btn-danger btn-block" id="clearButton">
                             <i data-feather="alert-circle" style="vertical-align: middle;"></i>
-                            Clear</button>
+                            Clear
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+
+    <script>
+        feather.replace()
+    </script>
 
 </body>
 

@@ -24,10 +24,12 @@ namespace doki_doki_delight_management_system.Controllers
 
         // POST api/<DataController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] User user)
         {
+            // Create a new instance of UsersService so that I can reuse the SetID method to generate a unique ID for the POST form data
+            UsersService service = new UsersService();
+            user.UserID = service.SetID();
+            UsersService.PushData(user);
         }
-
-    
     }
 }

@@ -61,18 +61,27 @@ $(document).ready(function () {
     // If user clciks this button then submit the booking details for validation
     $(document).on("click", "#reservationButton", function (e) {
 
-        const uri = 'api/Users'
-
         e.preventDefault();
+        const element = document.getElementById("reservationButton");
+
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+            return;
+        }
+
+        element.classList.add("disabled");
+
         var test = formValidate();
 
         if (test == true) {
 
             var customer = {
+                "userID": "",
+                "role": "Customer",
                 "forename": (document.getElementById("inputForename").value),
                 "surname": (document.getElementById("inputSurname").value),
-                "tel": (document.getElementById("inputTel").value),
-                "email": (document.getElementById("inputEmail").value)
+                "email": (document.getElementById("inputEmail").value),
+                "tel": (document.getElementById("inputTel").value)
             };
 
             var reservation = {
@@ -84,10 +93,36 @@ $(document).ready(function () {
             console.log(JSON.stringify(customer, undefined, 2));
             console.log(JSON.stringify(reservation, undefined, 2));
 
+            fetchUsers();
+            postUsers(customer);
         };
     });
-
 });
+
+async function fetchUsers() {
+
+    const url = "https://localhost:44375/api/users";
+    const raw = await fetch(url)
+
+    const data = await raw.json();
+    console.table(data);
+}
+
+async function postUsers(data) {
+    const url = "https://localhost:44375/api/users";
+
+    try {
+        await fetch(url, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+    } catch (e) {
+        throw "Failed to post";
+    }
+}
+
 
 // Function for loading different html files
 function loadDoc(page) {

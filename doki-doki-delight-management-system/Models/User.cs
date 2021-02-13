@@ -7,6 +7,8 @@ namespace doki_doki_delight_management_system.Models
 {
     public class User
     {
+        public string UserID { get; set; }
+
         public string Role { get; set; }
         public string Forename { get; set; }
         public string Surname { get; set; }
