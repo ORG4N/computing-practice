@@ -10,6 +10,7 @@ namespace doki_doki_delight_management_system.Models
         public string BookingID { get; set; }
         public string UserID { get; set; }
 
+        public string Occupants { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
 

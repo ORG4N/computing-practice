@@ -46,7 +46,7 @@ namespace doki_doki_delight_management_system
             });
 
             UsersService.Init();
-
+            BookingService.Init();
         }
     }
 }

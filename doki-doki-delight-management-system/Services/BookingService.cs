@@ -7,20 +7,20 @@ using doki_doki_delight_management_system.Models;
 
 namespace doki_doki_delight_management_system.Services
 {
-    public class UsersService
+    public class BookingService
     {
-        private static List<User> data = new List<User>();
+        private static List<Booking> data = new List<Booking>();
         public static Settings settings;
         public static int count;
+        public static string UserID;
 
-
-        // Initialise a list of users by reading them from the csv file
         public static void Init()
         {
-            UsersService service = new UsersService();
+            BookingService service = new BookingService();
+
             List<string> lines = new List<string>();
 
-            using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Read))
+            using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Read))
             {
                 using (StreamReader sr = new StreamReader(fs))
                 {
@@ -37,56 +37,60 @@ namespace doki_doki_delight_management_system.Services
             {
                 string[] split = field.Split(',');
 
-                User user = new User();
+                Booking booking = new Booking();
 
-                user.UserID = split[0];
-                user.Role = split[1];
-                user.Forename = split[2];
-                user.Surname = split[3];
-                user.Email = split[4];
-                user.Tel = split[5].Replace("/r", "");
+                booking.BookingID = split[0];
+                booking.UserID = split[1];
+                booking.Occupants = split[2];
+                booking.Date = split[3];
+                booking.Time = split[4].Replace("/r", "");
 
-                data.Add(user);
+                data.Add(booking);
             }
 
             // Read the ID count from json file
             settings = SettingsService.GetSettings();
-            count = settings.UserID;
+            count = settings.BookingID;
         }
 
-
-        // Used to return all user objects
-        public static List<User> GetData()
+        // Used to return all booking objects
+        public static List<Booking> GetData()
         {
             return data;
         }
 
         // Write the data back to the csv file
-        public static void PushData(User user)
+        public static void PushData(Booking booking)
         {
-            data.Add(user);
+            data.Add(booking);
 
-            using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Write))
+            using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Write))
             {
                 using (StreamWriter sw = new StreamWriter(fs))
                 {
-                    foreach (User element in data)
+                    foreach (Booking element in data)
                     {
-                        sw.WriteLine($"{ element.UserID},{ element.Role},{ element.Forename},{ element.Surname},{ element.Email},{ element.Tel}");
+                        sw.WriteLine($"{ element.BookingID},{ element.UserID},{ element.Occupants},{ element.Date}, { element.Time}");
                     }
                 }
             }
         }
 
-        // Calculate the ID of each user object and putting it into an 8 digit format
-        public string SetUserID()
+        // Calculate the ID of each booking object and putting it into an 8 digit format
+        public string SetBookingID()
         {
             string format = "00000000";
             string id = count.ToString(format);
-
-            BookingService.UserID = id;
             count++;
-            SettingsService.UpdateID(count, "UserID");
+
+            SettingsService.UpdateID(count, "BookingID");
+
+            return id;
+        }
+
+        public string GetUserID()
+        {
+            string id = UserID;
 
             return id;
         }

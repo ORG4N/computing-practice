@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using doki_doki_delight_management_system.Models;
 using doki_doki_delight_management_system.Services;
 
-
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace doki_doki_delight_management_system.Controllers
@@ -28,7 +27,7 @@ namespace doki_doki_delight_management_system.Controllers
         {
             // Create a new instance of UsersService so that I can reuse the SetID method to generate a unique ID for the POST form data
             UsersService service = new UsersService();
-            user.UserID = service.SetID();
+            user.UserID = service.SetUserID();
             UsersService.PushData(user);
         }
     }

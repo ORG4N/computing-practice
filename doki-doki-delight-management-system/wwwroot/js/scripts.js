@@ -66,35 +66,40 @@ $(document).ready(function () {
 
         if (element.classList.contains("disabled")) {
             alert("Please wait!");
-            return;
         }
 
-        element.classList.add("disabled");
+        else {
+            var test = formValidate();
 
-        var test = formValidate();
+            if (test == true) {
 
-        if (test == true) {
+                element.classList.add("disabled");
 
-            var customer = {
-                "userID": "",
-                "role": "Customer",
-                "forename": (document.getElementById("inputForename").value),
-                "surname": (document.getElementById("inputSurname").value),
-                "email": (document.getElementById("inputEmail").value),
-                "tel": (document.getElementById("inputTel").value)
+                var customer = {
+                    "userID": "",
+                    "role": "Customer",
+                    "forename": (document.getElementById("inputForename").value),
+                    "surname": (document.getElementById("inputSurname").value),
+                    "email": (document.getElementById("inputEmail").value),
+                    "tel": (document.getElementById("inputTel").value)
+                };
+
+                var reservation = {
+                    "bookingID": "",
+                    "userID": "",
+                    "occupants": (document.getElementById("inputOccupants").value),
+                    "date": (document.getElementById("inputDate").value),
+                    "time": (document.getElementById("inputTime").value)
+                };
+
+                console.log(JSON.stringify(customer, undefined, 2));
+                console.log(JSON.stringify(reservation, undefined, 2));
+
+                fetchUsers();
+                fetchBookings();
+                postUsers(customer);
+                postBookings(reservation);
             };
-
-            var reservation = {
-                "occupants": (document.getElementById("inputOccupants").value),
-                "date": (document.getElementById("inputDate").value),
-                "time": (document.getElementById("inputTime").value)
-            };
-
-            console.log(JSON.stringify(customer, undefined, 2));
-            console.log(JSON.stringify(reservation, undefined, 2));
-
-            fetchUsers();
-            postUsers(customer);
         };
     });
 });
@@ -108,8 +113,32 @@ async function fetchUsers() {
     console.table(data);
 }
 
+async function fetchBookings() {
+
+    const url = "https://localhost:44375/api/bookings";
+    const raw = await fetch(url)
+
+    const data = await raw.json();
+    console.table(data);
+}
+
 async function postUsers(data) {
     const url = "https://localhost:44375/api/users";
+
+    try {
+        await fetch(url, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+    } catch (e) {
+        throw "Failed to post";
+    }
+}
+
+async function postBookings(data) {
+    const url = "https://localhost:44375/api/bookings";
 
     try {
         await fetch(url, {
