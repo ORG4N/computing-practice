@@ -3,12 +3,24 @@ $(document).ready(function () {
 
     $(function () {
         $("#sidebar-placeholder").load('nav.html');
+
+        
+
     });
 
     // If user clicks the sidebar home button, send back to front page
     $(document).on("click", "#homeButton", function () {
-        const element = document.querySelector('#page');
-        element.classList.add('animate__animated', 'animate__slideOutRight');           // add an animation to the index div
+
+        var element = document.querySelector('.staffbar');
+
+        if (document.contains(element)){
+            element.classList.add('animate__animated', 'animate__slideOutLeft');
+        }
+        
+        else{
+            element = document.querySelector('#page');
+            element.classList.add('animate__animated', 'animate__slideOutRight');           // add an animation to the index div 
+        }
 
         element.addEventListener('animationend', () => {                                // wait until animation ends and load new content
             loadDoc('home');
@@ -104,6 +116,33 @@ $(document).ready(function () {
     });
 });
 
+// If user clicks the button to say theyre an employee, take them to the sign in page
+$(document).on("click", "#signInButton", function () {
+
+    const element = document.querySelector('#page');
+    element.classList.add('animate__animated', 'animate__slideOutRight');
+
+    const element2 = document.querySelector('#navhtml');
+    element2.classList.add('animate__animated', 'animate__slideOutLeft', 'animate__slow');
+
+    const element3 = document.querySelector('footer');
+    if (document.contains(element3)){
+        element3.classList.add('animate__animated', 'animate__slideOutDown', 'animate__slow');
+    };
+    
+    const element4 = document.querySelector('header');
+    if (document.contains(element4)){
+        element4.classList.add('animate__animated', 'animate__slideOutUp', 'animate__slow');
+    };
+
+    element.addEventListener('animationend', () => {
+        element2.addEventListener('animationend', () => {
+            loadDoc('staff');
+        });
+    });
+});
+
+
 async function fetchUsers() {
 
     const url = "https://localhost:44375/api/users";
@@ -163,6 +202,12 @@ function loadDoc(page) {
     else if (page == 'reservation') { $('main').load('reservation.html'); }   // Load the Reservation page
 
     else if (page == 'signIn') { $('main').load('signIn.html'); }        // Load the Employee Sign In page
+
+    else if (page == 'staff') {
+        $('#sidebar-placeholder').load('sidebar.html');
+        $("footer").remove();
+        $("header").remove();
+    }
 }
 
 function formValidate() {

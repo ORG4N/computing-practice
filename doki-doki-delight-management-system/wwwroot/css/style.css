@@ -119,3 +119,80 @@ h3{
 .btn-primary:not(:disabled):not(.disabled):focus{
   box-shadow: none;
 }
+
+.staffbar {
+    background-color: #1D1E2C;
+    width: 20%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100; /* Behind the navbar */
+    padding: 48px 0 0; /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .6);
+}
+
+.staffbar a {
+    color:#F7EBEC;  
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.staff-nav-header{
+    color:#DDBDD5;
+    text-align: center;
+    vertical-align: middle;;
+    font-size: 2.5vw;
+    font-weight: bold;
+    line-height: 100%;
+    padding-bottom: 30px;
+}
+
+.staff-nav-sub-header{
+    color: #1D1E2C;
+    font-size: 1vw;
+    background-color: #DDBDD5;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: bold;
+}
+
+.staff-nav-item-header{
+    color: #DDBDD5;
+    padding-left:20px;
+    font-size: 0.9vw;
+}
+
+.staff-nav-item{
+    padding-left:20px;
+    font-size: 0.8vw;
+}
+
+.staff-nav-item:hover{
+    background-color: #AC9FBB;
+}
+
+.staff-nav-section{
+    padding-top:50px;
+    padding-bottom: 25px;
+}
+
+.staff-nav-home{
+    text-align: center;
+    bottom:15px;
+    width:100%;
+    position:absolute;
+    background-color: #FF6663;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+.feather #staffbar {
+    color: #F7EBEC;
+    padding-right: 15px;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
