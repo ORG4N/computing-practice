@@ -214,13 +214,20 @@ h3{
 }
 
 .table-wrapper{
-    padding: 20px 25px
+    padding: 20px 25px;
+}
+
+.table-wrapper-2{
+    max-height: 70vh;
+    overflow: auto;
 }
 
 .table td{
     border-top:1px solid #b37a8d;
+    border-bottom:1px solid #b37a8d;
     font-size: 0.8vw;
     font-weight:500;
+    width: 20%;
 }
 
 .table thead th{
@@ -230,6 +237,7 @@ h3{
     color: #364a64;
     background-color: #ffb6ce;
     font-weight:bold;
+    width: 20%;
 }
 
 .hint-text{
