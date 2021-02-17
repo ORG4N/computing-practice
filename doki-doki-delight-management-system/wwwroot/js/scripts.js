@@ -3,9 +3,6 @@ $(document).ready(function () {
 
     $(function () {
         $("#sidebar-placeholder").load('nav.html');
-
-        
-
     });
 
     // If user clicks the sidebar home button, send back to front page
@@ -120,25 +117,24 @@ $(document).ready(function () {
 $(document).on("click", "#signInButton", function () {
 
     const element = document.querySelector('#page');
-    element.classList.add('animate__animated', 'animate__slideOutRight');
+    element.classList.add('animate__animated', 'animate__slideOutRight', 'animate__faster');
 
     const element2 = document.querySelector('#navhtml');
-    element2.classList.add('animate__animated', 'animate__slideOutLeft', 'animate__slow');
+    element2.classList.remove("animate__animated","animate__slideInLeft", "animate__slower");
+    element2.classList.add('animate__animated', 'animate__slideOutLeft', 'animate__faster');
 
     const element3 = document.querySelector('footer');
     if (document.contains(element3)){
-        element3.classList.add('animate__animated', 'animate__slideOutDown', 'animate__slow');
+        element3.classList.add('animate__animated', 'animate__slideOutDown', 'animate__faster');
     };
     
     const element4 = document.querySelector('header');
     if (document.contains(element4)){
-        element4.classList.add('animate__animated', 'animate__slideOutUp', 'animate__slow');
+        element4.classList.add('animate__animated', 'animate__slideOutUp', 'animate__faster');
     };
 
-    element.addEventListener('animationend', () => {
-        element2.addEventListener('animationend', () => {
-            loadDoc('staff');
-        });
+    element2.addEventListener('animationend', () => {
+        loadDoc('staff');
     });
 });
 
@@ -205,6 +201,7 @@ function loadDoc(page) {
 
     else if (page == 'staff') {
         $('#sidebar-placeholder').load('sidebar.html');
+        $('main').load('bookings.html');
         $("footer").remove();
         $("header").remove();
     }

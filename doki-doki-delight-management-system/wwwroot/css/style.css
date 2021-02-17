@@ -122,11 +122,11 @@ h3{
 
 .staffbar {
     background-color: #1D1E2C;
-    width: 20%;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
+    width:fit-content;
     z-index: 100; /* Behind the navbar */
     padding: 48px 0 0; /* Height of navbar */
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .6);
@@ -195,4 +195,48 @@ h3{
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
+}
+
+.table-title{
+    color:#F7EBEC;  
+    font-size: 1.4vw;
+    text-align: left;
+    background-color: #364a64;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin:-20px -25px 10px;
+}
+
+.booking-table{
+    background-color: #ffbed4;
+}
+
+.table-wrapper{
+    padding: 20px 25px
+}
+
+.table td{
+    border-top:1px solid #b37a8d;
+    font-size: 0.8vw;
+    font-weight:500;
+}
+
+.table thead th{
+    border-top:none;
+    border-bottom:2px solid #b37a8d;
+    font-size: 0.85vw;
+    color: #364a64;
+    background-color: #ffb6ce;
+    font-weight:bold;
+}
+
+.hint-text{
+    border-top:3px dotted #b37a8d;
+    border-bottom:3px dotted #b37a8d;
+    font-size: 0.7vw;
+    font-weight: normal;
+    width:fit-content;
+    padding:5px;
 }
