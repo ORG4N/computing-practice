@@ -85,14 +85,15 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputDate">Date:</label>
-                            <input type="date" class="form-control" id="inputDate">
+                            <input type="text" class="form-control" id="inputDate" placeholder="Select a date"> 
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputTime">Time:</label>
-                            <input type="time" class="form-control" id="inputTime">
+                            <input type="time" class="form-control flatpickr flatpickr-input" id="inputTime" data-id="timePicker24" onchange="checkTime()">
+                            <small id="occupantsHelp" class="form-text text-muted">Store is open from between: 09:00 and 17:00</small>
                         </div>
                     </div>
                 </div>
@@ -121,6 +122,38 @@
 
     <script>
         feather.replace()
+    </script>
+
+    <script>
+
+        var tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+
+        var month = new Date();
+        month = new Date(month.getFullYear(), month.getMonth()+2, 0);
+
+        var picker = new Pikaday({ 
+            field: document.getElementById('inputDate'),
+            format: 'D MMM YYYY',
+            minDate: tomorrow,
+            maxDate: month,
+        });
+
+        flatpickr(".selector", {});
+        document.getElementById("inputTime").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            minTime: "09:00",
+            maxTime: "17:00",
+            position: "above right",
+            minuteIncrement: "30",
+            defaultHour: 9,
+            defaultMinute: 0
+
+        });
+
     </script>
 
 </body>

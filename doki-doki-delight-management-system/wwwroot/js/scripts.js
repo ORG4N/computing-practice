@@ -235,3 +235,20 @@ function formValidate() {
 
     return valid;
 }
+
+function checkTime(){
+
+    var time = document.getElementById("inputTime").value;
+    console.log(time);
+
+    var split = time.split(":");
+    var min = split[1];
+
+    if (min < 15){ min = "00";}
+    else if (min < 45){ min = "30";}
+    else { min = "00";}
+
+    time = split[0] + ":" + min;
+
+    document.getElementById("inputTime").value = time;
+}
