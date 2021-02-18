@@ -35,14 +35,19 @@ namespace doki_doki_delight_management_system.Services
 
         public static Settings GetSettings()
         {
-            using (FileStream fs = File.Open("wwwroot/data/settings.json", FileMode.Open, FileAccess.Read))
+            try
             {
-                using (StreamReader sr = new StreamReader(fs))
+                using (FileStream fs = File.Open("wwwroot/data/settings.json", FileMode.Open, FileAccess.Read))
                 {
-                    var jsonSettings = sr.ReadToEnd();
-                    settings = JsonConvert.DeserializeObject<Settings>(jsonSettings);
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        var jsonSettings = sr.ReadToEnd();
+                        settings = JsonConvert.DeserializeObject<Settings>(jsonSettings);
+                    }
                 }
             }
+
+            catch (IOException) { }
 
             return settings;
         }

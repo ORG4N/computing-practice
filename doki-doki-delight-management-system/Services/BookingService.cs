@@ -20,17 +20,22 @@ namespace doki_doki_delight_management_system.Services
 
             List<string> lines = new List<string>();
 
-            using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Read))
+
+            try
             {
-                using (StreamReader sr = new StreamReader(fs))
+                using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Read))
                 {
-                    while (!sr.EndOfStream)
+                    using (StreamReader sr = new StreamReader(fs))
                     {
-                        lines.Add(sr.ReadLine());
+                        while (!sr.EndOfStream)
+                        {
+                            lines.Add(sr.ReadLine());
+                        }
                     }
                 }
             }
 
+            catch (IOException) { }
 
             // Create each object by reading each field from each line in from the users.csv file
             foreach (string field in lines)
@@ -64,16 +69,22 @@ namespace doki_doki_delight_management_system.Services
         {
             data.Add(booking);
 
-            using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Write))
+            try
             {
-                using (StreamWriter sw = new StreamWriter(fs))
+                using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Write))
                 {
-                    foreach (Booking element in data)
+                    using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        sw.WriteLine($"{ element.BookingID},{ element.UserID},{ element.Occupants},{ element.Date}, { element.Time}");
+                        foreach (Booking element in data)
+                        {
+                            sw.WriteLine($"{ element.BookingID},{ element.UserID},{ element.Occupants},{ element.Date}, { element.Time}");
+                        }
                     }
                 }
             }
+
+            catch (IOException) { }
+
         }
 
         // Calculate the ID of each booking object and putting it into an 8 digit format

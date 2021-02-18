@@ -20,17 +20,22 @@ namespace doki_doki_delight_management_system.Services
             UsersService service = new UsersService();
             List<string> lines = new List<string>();
 
-            using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Read))
+
+            try
             {
-                using (StreamReader sr = new StreamReader(fs))
+                using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Read))
                 {
-                    while (!sr.EndOfStream)
+                    using (StreamReader sr = new StreamReader(fs))
                     {
-                        lines.Add(sr.ReadLine());
+                        while (!sr.EndOfStream)
+                        {
+                            lines.Add(sr.ReadLine());
+                        }
                     }
                 }
             }
 
+            catch (IOException) { }
 
             // Create each object by reading each field from each line in from the users.csv file
             foreach (string field in lines)
@@ -65,17 +70,21 @@ namespace doki_doki_delight_management_system.Services
         public static void PushData(User user)
         {
             data.Add(user);
-
-            using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Write))
+            try
             {
-                using (StreamWriter sw = new StreamWriter(fs))
+                using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Write))
                 {
-                    foreach (User element in data)
+                    using (StreamWriter sw = new StreamWriter(fs))
                     {
-                        sw.WriteLine($"{ element.UserID},{ element.Role},{ element.Forename},{ element.Surname},{ element.Email},{ element.Tel}");
+                        foreach (User element in data)
+                        {
+                            sw.WriteLine($"{ element.UserID},{ element.Role},{ element.Forename},{ element.Surname},{ element.Email},{ element.Tel}");
+                        }
                     }
                 }
             }
+
+            catch (IOException) { }
         }
 
         // Calculate the ID of each user object and putting it into an 8 digit format

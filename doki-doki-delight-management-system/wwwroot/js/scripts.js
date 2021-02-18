@@ -56,7 +56,6 @@ $(document).ready(function () {
 
         element.addEventListener('animationend', () => {
             loadDoc('signIn');
-
         });
     });
 
@@ -104,8 +103,6 @@ $(document).ready(function () {
                 console.log(JSON.stringify(customer, undefined, 2));
                 console.log(JSON.stringify(reservation, undefined, 2));
 
-                fetchUsers();
-                fetchBookings();
                 postUsers(customer);
                 postBookings(reservation);
             };
@@ -135,6 +132,7 @@ $(document).on("click", "#signInButton", function () {
 
     element2.addEventListener('animationend', () => {
         loadDoc('staff');
+        fetchBookings();
     });
 });
 
@@ -142,7 +140,7 @@ $(document).on("click", "#signInButton", function () {
 async function fetchUsers() {
 
     const url = "https://localhost:44375/api/users";
-    const raw = await fetch(url)
+    const raw = await fetch(url);
 
     const data = await raw.json();
     console.table(data);
@@ -151,10 +149,15 @@ async function fetchUsers() {
 async function fetchBookings() {
 
     const url = "https://localhost:44375/api/bookings";
-    const raw = await fetch(url)
+    const raw = await fetch(url);
 
     const data = await raw.json();
-    console.table(data);
+
+    $("#bookings tbody tr").remove();
+
+    data.forEach(({bookingID, userID, date, time, occupants}) => {
+        $("#bookings").find('tbody').append(`<tr><td>${bookingID}</td><td>${userID}</td><td>${date}</td><td>${time}</td><td>${occupants}</td></tr>`);
+    })    
 }
 
 async function postUsers(data) {
