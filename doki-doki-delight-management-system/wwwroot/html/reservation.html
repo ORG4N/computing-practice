@@ -29,20 +29,20 @@
             <p id="reservation-header" class="lead" style="text-align: center;">Please fill out this form with your personal information to create your reservation. </p>
             <hr class="my-4">
 
-            <form name="reservation">
+            <form name="reservation" class="was-validated" novalidate>
                 <div class="row">
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputForename">Forename:</label>
-                            <input type="text" class="form-control" id="inputForename" maxlength="20" placeholder="John">
+                            <input type="text" class="form-control" id="inputForename" maxlength="20" placeholder="John" required pattern="[A-Za-z]+">                        
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputSurname">Surname:</label>
-                            <input type="text" class="form-control" id="inputSurname" maxlength="20" placeholder="Doe">
+                            <input type="text" class="form-control" id="inputSurname" maxlength="20" placeholder="Doe" required pattern="[A-Za-z]+">
                         </div>
                     </div>
                 </div>
@@ -52,14 +52,14 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputTel">Telephone:</label>
-                            <input type="tel" class="form-control" id="inputTel" placeholder="12345 123456">
+                            <input type="text" class="form-control" id="inputTel" placeholder="12345 123456" pattern= "[0-9]+" required>
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputEmail">Email:</label>
-                            <input type="email" class="form-control" id="inputEmail" placeholder="name@email">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="name@email" required>
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputOccupants">Occupants:</label>
-                            <select type="number" class="form-control" id="inputOccupants">
+                            <select type="number" class="form-control" id="inputOccupants" required>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -85,14 +85,14 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="inputDate">Date:</label>
-                            <input type="text" class="form-control" id="inputDate" placeholder="Select a date"> 
+                            <input type="text" class="form-control" id="inputDate" placeholder="Select a date" pattern="\d{1,2}-\d{1,2}-\d{4}" required> 
                         </div>
                     </div>
 
                     <div class="col">
                         <div class="form-group">
                             <label for="inputTime">Time:</label>
-                            <input type="time" class="form-control flatpickr flatpickr-input" id="inputTime" data-id="timePicker24">
+                            <input type="time" class="form-control flatpickr flatpickr-input" id="inputTime" data-id="timePicker24" required>
                             <small id="occupantsHelp" class="form-text text-muted">Store is open from between: 09:00 and 17:00</small>
                         </div>
                     </div>
@@ -123,6 +123,12 @@
     <script>
         feather.replace();
         dateAndTime();
+
+        $('.flatpickr-input:visible').on('focus', function () {
+            $(this).blur()
+        })
+        $('.flatpickr-input:visible').prop('readonly', false)
+
     </script>
 
 </body>

@@ -2,7 +2,7 @@
 $(document).ready(function () {
 
     $(function () {
-        $("#sidebar-placeholder").load('nav.html');
+        $("#sidebar-placeholder").load('html/nav.html');
     });
 
     // If user clicks the sidebar home button, send back to front page
@@ -214,15 +214,15 @@ function loadDoc(page) {
 
     if (page == 'home') { $('main').load('index.html'); }            // Load the Home page
 
-    else if (page == 'userselect') { $('main').load('userselect.html'); }        // Load the User Select page
+    else if (page == 'userselect') { $('main').load('html/userselect.html'); }        // Load the User Select page
 
-    else if (page == 'reservation') { $('main').load('reservation.html'); }   // Load the Reservation page
+    else if (page == 'reservation') { $('main').load('html/reservation.html'); }   // Load the Reservation page
 
-    else if (page == 'signIn') { $('main').load('signIn.html'); }        // Load the Employee Sign In page
+    else if (page == 'signIn') { $('main').load('html/signIn.html'); }        // Load the Employee Sign In page
 
     else if (page == 'staff') {
-        $('#sidebar-placeholder').load('sidebar.html');
-        $('main').load('bookings.html');
+        $('#sidebar-placeholder').load('html/staff/sidebar.html');
+        $('main').load('html/bookings.html');
         $("footer").remove();
         $("header").remove();
     }
