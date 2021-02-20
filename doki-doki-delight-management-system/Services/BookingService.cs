@@ -77,7 +77,7 @@ namespace doki_doki_delight_management_system.Services
                     {
                         foreach (Booking element in data)
                         {
-                            sw.WriteLine($"{ element.BookingID},{ element.UserID},{ element.Occupants},{ element.Date}, { element.Time}");
+                            sw.WriteLine($"{ element.BookingID.Trim()},{ element.UserID.Trim()},{ element.Occupants.Trim()},{ element.Date.Trim()},{ element.Time.Trim()}");
                         }
                     }
                 }

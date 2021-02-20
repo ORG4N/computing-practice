@@ -252,3 +252,22 @@ h3{
 .form-control:disabled, .form-control[readonly]{
     background-color: white;
 }
+
+#add-booking-placeholder{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-title{
+    color:#F7EBEC;  
+    font-size: 1.4vw;
+    text-align: left;
+    background-color: #364a64;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+}

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <div id="page" class="animate__animated animate__slideInDown">
+        <div class="container-flex">
+            <div class="row">
+
+                <div class="col-10 offset-2">
+
+                    <div id="add-booking-placeholder">  </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+
+        $('#add-booking-placeholder').load('reservation.html .jumbotron', function(){
+            dateAndTime();
+        });
+
+    </script>
+
+</body>
+</html>

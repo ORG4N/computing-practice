@@ -136,6 +136,24 @@ $(document).on("click", "#signInButton", function () {
     });
 });
 
+$(document).on("click", "#viewBookings", function () {
+    const element = document.querySelector('#page');
+    element.classList.add('animate__animated', 'animate__slideOutRight');
+
+    element.addEventListener('animationend', () => {
+        $('main').load('bookings.html');
+        fetchBookings();
+    });
+});
+
+$(document).on("click", "#addBooking", function () {
+    const element = document.querySelector('#page');
+    element.classList.add('animate__animated', 'animate__slideOutRight');
+
+    element.addEventListener('animationend', () => {
+        $('main').load('addBooking.html');
+    });
+});
 
 async function fetchUsers() {
 
@@ -251,4 +269,33 @@ function checkTime(){
     time = split[0] + ":" + min;
 
     document.getElementById("inputTime").value = time;
+}
+
+function dateAndTime() {
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    var month = new Date();
+    month = new Date(month.getFullYear(), month.getMonth() + 2, 0);
+
+    var picker = new Pikaday({
+        field: document.getElementById('inputDate'),
+        format: 'DD-MM-YYYY',
+        minDate: tomorrow,
+        maxDate: month,
+    });
+
+    flatpickr(".selector", {});
+    document.getElementById("inputTime").flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minTime: "09:00",
+        maxTime: "17:00",
+        position: "above right",
+        minuteIncrement: "30",
+        defaultHour: 9,
+        defaultMinute: 0,
+    });
 }

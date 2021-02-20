@@ -78,7 +78,7 @@ namespace doki_doki_delight_management_system.Services
                     {
                         foreach (User element in data)
                         {
-                            sw.WriteLine($"{ element.UserID},{ element.Role},{ element.Forename},{ element.Surname},{ element.Email},{ element.Tel}");
+                            sw.WriteLine($"{ element.UserID.Trim()},{ element.Role.Trim()},{ element.Forename.Trim()},{ element.Surname.Trim()},{ element.Email.Trim()},{ element.Tel.Trim()}");
                         }
                     }
                 }
