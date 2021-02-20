@@ -105,6 +105,8 @@ $(document).ready(function () {
 
                 postUsers(customer);
                 postBookings(reservation);
+
+                loadDoc('confirmation');
             };
         };
     });
@@ -141,7 +143,7 @@ $(document).on("click", "#viewBookings", function () {
     element.classList.add('animate__animated', 'animate__slideOutRight');
 
     element.addEventListener('animationend', () => {
-        $('main').load('bookings.html');
+        $('main').load('html/staff/bookings.html');
         fetchBookings();
     });
 });
@@ -151,7 +153,7 @@ $(document).on("click", "#addBooking", function () {
     element.classList.add('animate__animated', 'animate__slideOutRight');
 
     element.addEventListener('animationend', () => {
-        $('main').load('addBooking.html');
+        $('main').load('html/staff/addBooking.html');
     });
 });
 
@@ -175,7 +177,7 @@ async function fetchBookings() {
 
     data.forEach(({bookingID, userID, date, time, occupants}) => {
         $("#bookings").find('tbody').append(`<tr><td>${bookingID}</td><td>${userID}</td><td>${date}</td><td>${time}</td><td>${occupants}</td></tr>`);
-    })    
+    });    
 }
 
 async function postUsers(data) {
@@ -222,10 +224,12 @@ function loadDoc(page) {
 
     else if (page == 'staff') {
         $('#sidebar-placeholder').load('html/staff/sidebar.html');
-        $('main').load('html/bookings.html');
+        $('main').load('html/staff/bookings.html');
         $("footer").remove();
         $("header").remove();
     }
+
+    else if (page == 'confirmation') { $('main').load('html/confirmation.html'); }        // Load the Employee Sign In page
 }
 
 function formValidate() {
