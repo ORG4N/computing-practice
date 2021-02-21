@@ -303,3 +303,17 @@ function dateAndTime() {
         defaultMinute: 0,
     });
 }
+
+function checkDate(){
+    var date = document.getElementById("inputDate").value;
+    
+    // make border green
+    if(date==""){
+        $(document.getElementById("inputDate")).css("border","1px solid #dc3545");
+    }
+
+    // make border red
+    else if(date!=""){
+        $(document.getElementById("inputDate")).css("border",  "1px solid #28a745");
+    }
+}

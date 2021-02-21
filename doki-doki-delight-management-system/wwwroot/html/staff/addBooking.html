@@ -22,6 +22,15 @@
 
         $('#add-booking-placeholder').load('html/reservation.html .jumbotron', function(){
             dateAndTime();
+
+            $('.flatpickr-input:visible').on('focus', function () {
+                $(this).blur()
+            })
+            $('.flatpickr-input:visible').prop('readonly', false)
+
+            document.getElementById("reservation-header").innerHTML = "CREATE A RESERVATION HERE:";
+            document.getElementById("reservation-header").classList.add("form-title");
+
         });
 
     </script>

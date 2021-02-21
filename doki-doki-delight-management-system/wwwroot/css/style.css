@@ -52,12 +52,12 @@ h3{
     z-index: 100;
     padding: 48px 0 0;
     transform: translate(0px, 40px);
-    opacity: 50%;
+    opacity: 0.5;
 }
 
 .nav-item{
     background-color: #e492ad;
-    opacity: 100%;
+    opacity: 1;
 }
   
   .sidebar .nav-link .feather {
@@ -264,10 +264,29 @@ h3{
 .form-title{
     color:#F7EBEC;  
     font-size: 1.4vw;
-    text-align: left;
+    text-align: center;
     background-color: #364a64;
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 30px;
     padding-right: 30px;
+}
+
+.show-booking{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.field-header{
+    text-align:left;
+    direction: ltr;
+    padding-left: 25px;
+    font-size: 0.8vw;
+}
+
+.field-record{
+    text-align:right;
+    direction: rtl;
+    padding-right: 25px;
+    font-size: 0.75vw;
 }
