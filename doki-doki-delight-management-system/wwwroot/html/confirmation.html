@@ -40,8 +40,8 @@
                                         <div class="col field-header">
                                             <b>Forename</b>
                                         </div>
-                                        <div class="col field-record">
-                                            Callum
+                                        <div class="col field-record" id="forename">
+                                            
                                         </div>
                                     </div>
 
@@ -51,8 +51,8 @@
                                         <div class="col field-header">
                                             <b>Surname</b>
                                         </div>
-                                        <div class="col field-record">
-                                            Organ
+                                        <div class="col field-record" id="surname">
+                                            
                                         </div>
                                     </div>
 
@@ -63,8 +63,8 @@
                                             <b>Telephone Number</b>
                                         </div>
                                         
-                                        <div class="col field-record">
-                                            1234567890
+                                        <div class="col field-record" id="tel">
+                                            
                                         </div>
 
                                     </div>
@@ -75,8 +75,8 @@
                                         <div class="col field-header">
                                             <b>Email</b>
                                         </div>
-                                        <div class="col field-record">
-                                            datfwadaw:Gmail.com
+                                        <div class="col field-record" id="email">
+                                            
                                         </div>
                                     </div>
 
@@ -86,12 +86,16 @@
                                         <div class="col field-header">
                                             <b>Customer ID</b>
                                         </div>
-                                        <div class="col field-record">
-                                            123456678
+                                        <div class="col field-record" id="userID" style="direction: ltr">
+                                            Retrieving....
                                         </div>
                                     </div>
 
                                     <hr class="my-1">
+
+                                    <script>
+                                        getCustomer();
+                                    </script>
 
                                 </div>
                             </div>
@@ -110,8 +114,8 @@
                                         <div class="col field-header">
                                             <b>Date</b>
                                         </div>
-                                        <div class="col field-record">
-                                            Callum
+                                        <div class="col field-record" id="date">
+                                            
                                         </div>
                                     </div>
 
@@ -121,8 +125,8 @@
                                         <div class="col field-header">
                                             <b>Time</b>
                                         </div>
-                                        <div class="col field-record">
-                                            Organ
+                                        <div class="col field-record" id="time">
+
                                         </div>
                                     </div>
 
@@ -132,9 +136,9 @@
                                         <div class="col field-header">
                                             <b>Number of Participants</b>
                                         </div>
-                                        
-                                        <div class="col field-record">
-                                            1234567890
+
+                                        <div class="col field-record" id="occupants">
+                                            
                                         </div>
 
                                     </div>
@@ -145,8 +149,8 @@
                                         <div class="col field-header">
                                             <b>Reservation ID</b>
                                         </div>
-                                        <div class="col field-record">
-                                            datfwadaw:Gmail.com
+                                        <div class="col field-record" id="bookingID" style="direction: ltr">
+
                                         </div>
                                     </div>
 
@@ -159,6 +163,10 @@
                                     </div>
 
                                     <hr class="my-1">
+
+                                    <script>
+                                        getBooking();
+                                    </script>
 
                                 </div>
                             </div>

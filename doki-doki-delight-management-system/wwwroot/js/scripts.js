@@ -103,9 +103,21 @@ $(document).ready(function () {
                 console.log(JSON.stringify(customer, undefined, 2));
                 console.log(JSON.stringify(reservation, undefined, 2));
 
+                sessionStorage.setItem("userID", "Retrieving...");
+                sessionStorage.setItem("forename", customer.forename);
+                sessionStorage.setItem("surname", customer.surname);
+                sessionStorage.setItem("email", customer.email);
+                sessionStorage.setItem("tel", customer.tel);
+
+                sessionStorage.setItem("bookingID", "Retrieving...");
+                sessionStorage.setItem("occupants", reservation.occupants);
+                sessionStorage.setItem("date", reservation.date);
+                sessionStorage.setItem("time", reservation.time);
+
                 postUsers(customer);
                 postBookings(reservation);
 
+                getUserID();
                 loadDoc('confirmation');
             };
         };
@@ -157,13 +169,74 @@ $(document).on("click", "#addBooking", function () {
     });
 });
 
+function getCustomer() {
+
+    var i;
+    var fields = ["forename", "surname", "email", "tel", "userID"];
+
+    for (i = 0; i < fields.length; i++) {
+        document.getElementById(fields[i]).innerHTML = sessionStorage.getItem(fields[i]);
+    }
+}
+
+function getUserID() {
+    $.ajax({
+        url: "https://localhost:44375/api/users",
+        type: "GET",
+        success: function (result) {
+
+            result.forEach(function (array) {
+                if (array.forename == sessionStorage.getItem("forename")) {
+                    if (array.surname == sessionStorage.getItem("surname")) {
+                        if (array.email == sessionStorage.getItem("email")) {
+                            if (array.tel == sessionStorage.getItem("tel")) {
+                                sessionStorage.setItem("userID", array.userID);
+                                console.log(sessionStorage.getItem("userID"));
+                            }
+                        }
+                    }
+                }
+                document.getElementById("userID").innerHTML = sessionStorage.getItem("userID");
+                getBookingID();
+            });
+        }
+    });
+}
+
+function getBooking() {
+
+    var i;
+    var fields = ["date", "time", "occupants", "bookingID",];
+
+    for (i = 0; i < fields.length; i++) {
+        document.getElementById(fields[i]).innerHTML = sessionStorage.getItem(fields[i]);
+    }
+}
+
+function getBookingID() {
+    $.ajax({
+        url: "https://localhost:44375/api/bookings",
+        type: "GET",
+        success: function (result) {
+
+            result.forEach(function (array) {
+                if (array.userID == sessionStorage.getItem("userID")) {
+                    sessionStorage.setItem("bookingID", array.bookingID);
+                    console.log(sessionStorage.getItem("bookingID"));
+                }
+            });
+            document.getElementById("bookingID").innerHTML = sessionStorage.getItem("bookingID");
+        }
+    });
+}
+
+
 async function fetchUsers() {
 
     const url = "https://localhost:44375/api/users";
     const raw = await fetch(url);
 
     const data = await raw.json();
-    console.table(data);
 }
 
 async function fetchBookings() {
@@ -188,6 +261,9 @@ async function postUsers(data) {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
+        }).then((result) =>
+        {
+            getUserID();
         });
 
     } catch (e) {
@@ -209,7 +285,6 @@ async function postBookings(data) {
         throw "Failed to post";
     }
 }
-
 
 // Function for loading different html files
 function loadDoc(page) {

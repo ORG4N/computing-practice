@@ -12,7 +12,7 @@ namespace doki_doki_delight_management_system.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController : Controller
     {
         // GET: api/<DataController>
         [HttpGet]
