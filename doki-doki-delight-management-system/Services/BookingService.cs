@@ -68,10 +68,34 @@ namespace doki_doki_delight_management_system.Services
         public static void PushData(Booking booking)
         {
             data.Add(booking);
+            WriteData();
 
+        }
+
+        public static void Delete(string id)
+        {
+            Booking toDelete = null;
+            foreach(Booking booking in data)
+            {
+                if (booking.BookingID == id)
+                {
+                    toDelete = booking;
+                }
+            }
+
+            if (toDelete != null)
+            {
+                data.Remove(toDelete);
+                WriteData();
+            }
+
+        }
+
+        private static void WriteData()
+        {
             try
             {
-                using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Open, FileAccess.Write))
+                using (FileStream fs = File.Open("wwwroot/data/Bookings.csv", FileMode.Create, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
@@ -84,8 +108,8 @@ namespace doki_doki_delight_management_system.Services
             }
 
             catch (IOException) { }
-
         }
+
 
         // Calculate the ID of each booking object and putting it into an 8 digit format
         public string SetBookingID()

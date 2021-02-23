@@ -10,17 +10,17 @@ $(document).ready(function () {
 
         var element = document.querySelector('.staffbar');
 
-        if (document.contains(element)){
+        if (document.contains(element)) {
             element.classList.add('animate__animated', 'animate__slideOutLeft');
         }
-        
-        else{
+
+        else {
             element = document.querySelector('#page');
             element.classList.add('animate__animated', 'animate__slideOutRight');           // add an animation to the index div 
         }
 
         element.addEventListener('animationend', () => {                                // wait until animation ends and load new content
-            loadDoc('home');
+            $('main').load('index.html');
         });
     });
 
@@ -32,7 +32,7 @@ $(document).ready(function () {
         element.classList.add('animate__animated', 'animate__slideOutRight');           // add an animation to the index div
 
         element.addEventListener('animationend', () => {                                // wait until animation ends and load new content
-            loadDoc('userselect');
+            $('main').load('html/userselect.html');
         });
     });
 
@@ -44,7 +44,7 @@ $(document).ready(function () {
         element.classList.add('animate__animated', 'animate__slideOutRight');
 
         element.addEventListener('animationend', () => {
-            loadDoc('reservation');
+            $('main').load('html/reservation.html');
         });
     });
 
@@ -55,7 +55,7 @@ $(document).ready(function () {
         element.classList.add('animate__animated', 'animate__slideOutRight');
 
         element.addEventListener('animationend', () => {
-            loadDoc('signIn');
+            $('main').load('html/signIn.html');
         });
     });
 
@@ -77,9 +77,9 @@ $(document).ready(function () {
         }
 
         else {
-            var test = formValidate();
+            var valid = formValidate();
 
-            if (test == true) {
+            if (valid == true) {
 
                 element.classList.add("disabled");
 
@@ -118,56 +118,100 @@ $(document).ready(function () {
                 postBookings(reservation);
 
                 getUserID();
-                loadDoc('confirmation');
+                $('main').load('html/confirmation.html');
             };
         };
     });
-});
 
-// If user clicks the button to say theyre an employee, take them to the sign in page
-$(document).on("click", "#signInButton", function () {
+    // If user clicks the button to say theyre an employee, take them to the sign in page
+    $(document).on("click", "#signInButton", function () {
 
-    const element = document.querySelector('#page');
-    element.classList.add('animate__animated', 'animate__slideOutRight', 'animate__faster');
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight', 'animate__faster');
 
-    const element2 = document.querySelector('#navhtml');
-    element2.classList.remove("animate__animated","animate__slideInLeft", "animate__slower");
-    element2.classList.add('animate__animated', 'animate__slideOutLeft', 'animate__faster');
+        const element2 = document.querySelector('#navhtml');
+        element2.classList.remove("animate__animated", "animate__slideInLeft", "animate__slower");
+        element2.classList.add('animate__animated', 'animate__slideOutLeft', 'animate__faster');
 
-    const element3 = document.querySelector('footer');
-    if (document.contains(element3)){
-        element3.classList.add('animate__animated', 'animate__slideOutDown', 'animate__faster');
-    };
-    
-    const element4 = document.querySelector('header');
-    if (document.contains(element4)){
-        element4.classList.add('animate__animated', 'animate__slideOutUp', 'animate__faster');
-    };
+        const element3 = document.querySelector('footer');
+        if (document.contains(element3)) {
+            element3.classList.add('animate__animated', 'animate__slideOutDown', 'animate__faster');
+        };
 
-    element2.addEventListener('animationend', () => {
-        loadDoc('staff');
-        fetchBookings();
+        const element4 = document.querySelector('header');
+        if (document.contains(element4)) {
+            element4.classList.add('animate__animated', 'animate__slideOutUp', 'animate__faster');
+        };
+
+        element2.addEventListener('animationend', () => {
+            $('#sidebar-placeholder').load('html/staff/sidebar.html');
+            $('main').load('html/staff/bookings.html', function () {
+                $("footer").remove();
+                $("header").remove();
+                fetchBookings();
+            });
+        });
     });
-});
 
-$(document).on("click", "#viewBookings", function () {
-    const element = document.querySelector('#page');
-    element.classList.add('animate__animated', 'animate__slideOutRight');
+    $(document).on("click", "#removeBookingButton", function (e) {
 
-    element.addEventListener('animationend', () => {
-        $('main').load('html/staff/bookings.html');
-        fetchBookings();
+        e.preventDefault();
+        const element = document.getElementById("removeBookingButton");
+
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+        }
+
+        else {
+            const customerID = document.getElementById("inputCustomerID").value;
+            const bookingID = document.getElementById("inputReservationID").value;
+
+            $.ajax({
+                url: "https://localhost:44375/api/bookings",
+                type: "GET",
+                success: function (result) {
+
+                    result.forEach(function (array) {
+                        if (array.userID == customerID) {
+                            if (array.bookingID == bookingID) {
+                                deleteReservation(bookingID);
+                            }
+                        }
+                    });
+                }
+            });
+        }
     });
-});
 
-$(document).on("click", "#addBooking", function () {
-    const element = document.querySelector('#page');
-    element.classList.add('animate__animated', 'animate__slideOutRight');
+    $(document).on("click", "#viewBookings", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
 
-    element.addEventListener('animationend', () => {
-        $('main').load('html/staff/addBooking.html');
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/bookings.html', function () {
+                fetchBookings();
+            });
+        });
     });
-});
+
+    $(document).on("click", "#addBooking", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/addBooking.html');
+        });
+    });
+
+    $(document).on("click", "#removeBooking", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/removeBooking.html');
+        });
+    });
+})
 
 function getCustomer() {
 
@@ -176,6 +220,19 @@ function getCustomer() {
 
     for (i = 0; i < fields.length; i++) {
         document.getElementById(fields[i]).innerHTML = sessionStorage.getItem(fields[i]);
+    }
+}
+
+async function deleteReservation(id) {
+    const url = "https://localhost:44375/api/bookings/";
+
+    try {
+        await fetch(url + id, {
+            method: "DELETE",
+        });
+
+    } catch (e) {
+        throw "Failed to delete";
     }
 }
 
@@ -286,26 +343,6 @@ async function postBookings(data) {
     }
 }
 
-// Function for loading different html files
-function loadDoc(page) {
-
-    if (page == 'home') { $('main').load('index.html'); }            // Load the Home page
-
-    else if (page == 'userselect') { $('main').load('html/userselect.html'); }        // Load the User Select page
-
-    else if (page == 'reservation') { $('main').load('html/reservation.html'); }   // Load the Reservation page
-
-    else if (page == 'signIn') { $('main').load('html/signIn.html'); }        // Load the Employee Sign In page
-
-    else if (page == 'staff') {
-        $('#sidebar-placeholder').load('html/staff/sidebar.html');
-        $('main').load('html/staff/bookings.html');
-        $("footer").remove();
-        $("header").remove();
-    }
-
-    else if (page == 'confirmation') { $('main').load('html/confirmation.html'); }        // Load the Employee Sign In page
-}
 
 function formValidate() {
 

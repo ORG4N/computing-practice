@@ -5,27 +5,29 @@
 
     <div id="page" class="animate__animated animate__slideInLeft">
 
-        <!-- Draw the title-->
-        <div class="container-flex">
-            <div class="title animate__animated animate__slideInLeft">
+        <div id="heading-stuff">
+            <!-- Draw the title-->
+            <div class="container-flex">
+                <div class="title animate__animated animate__slideInLeft">
+                    <div class="row align-self-end">
+                        <div class="col-12">
+                            <h2> DOKI-DOKI DELIGHT </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Draw a sub-headig that overlaps with title-->
+            <div class="container">
                 <div class="row align-self-end">
-                    <div class="col-12">
-                        <h2> DOKI-DOKI DELIGHT </h2>
+                    <div class="col-12" id="headingBox">
+                        <h3>YOUR RESERVATION:</h3>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Draw a sub-headig that overlaps with title-->
-        <div class="container">
-            <div class="row align-self-end">
-                <div class="col-12" id="headingBox">
-                    <h3>YOUR RESERVATION:</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
+        <div class="container" id="confirmation">
             <div id="carouselContent" class="carousel slide" data-ride="carousel" data-interval="100000">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -157,7 +159,7 @@
                                     <hr class="my-1">
 
                                     <div class="row show-booking">
-                                        <div class="col field-header" style="text-align: center;">
+                                        <div class="col field-header" style="text-align: center;" id="infoButton">
                                             Click here for more venue information...
                                         </div>
                                     </div>
@@ -237,7 +239,20 @@
     </div>
 
     <script>
-         feather.replace();
+        feather.replace();
+
+        // Because this html file is getting reused for creating reservations from both the customer and staff access points,
+        // this code is needed so that when the user is on the staff section the styling and formatting looks normal
+        const staffbar = document.querySelector('.staffbar');
+        if (document.contains(staffbar)){
+            document.querySelector('#heading-stuff').remove();   
+            document.querySelector('#confirmation').setAttribute("id", "confirmation");  
+            
+            // Required to make the content appear in the correct place
+            $("#confirmation" ).wrap( "<div class='col-10 offset-2'></div>" );
+            $(".col-10" ).wrap( "<div class='row'></div>" );
+        }
+
     </script>
 
 </body>

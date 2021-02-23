@@ -30,5 +30,12 @@ namespace doki_doki_delight_management_system.Controllers
             booking.UserID = service.GetUserID();
             BookingService.PushData(booking);
         }
+
+        // DELETE api/<BookingController>
+        [HttpDelete ("{id}")]
+        public void Delete(string id)
+        {
+            BookingService.Delete(id);
+        }
     }
 }
