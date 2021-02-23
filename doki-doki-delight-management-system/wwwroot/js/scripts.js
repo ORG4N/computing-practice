@@ -308,6 +308,9 @@ async function fetchBookings() {
     data.forEach(({bookingID, userID, date, time, occupants}) => {
         $("#bookings").find('tbody').append(`<tr><td>${bookingID}</td><td>${userID}</td><td>${date}</td><td>${time}</td><td>${occupants}</td></tr>`);
     });    
+
+    var length = document.getElementById("bookings").rows.length;
+    document.getElementById("reservation-count-num").innerHTML = length;
 }
 
 async function postUsers(data) {

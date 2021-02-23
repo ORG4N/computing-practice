@@ -17,10 +17,12 @@
 
                                 <div class="table-title">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-9">
                                             <b>CUSTOMER RESERVATIONS</b>
                                         </div>
                                     </div>
+
+
                                 </div>
 
 
@@ -49,10 +51,19 @@
 
                                 <br>
 
-                                <div class="hint-text">
-                                    Click on the <b>'CUSTOMER ID'</b> to reveal more information...
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="hint-text">
+                                            Click on the <b>'CUSTOMER ID'</b> to reveal more information...
+                                        </div>
+                                    </div>
+                                    <div class="col-4 offset-4">
+                                        <div id="reservation-count">
+                                            <b>NUMBER OF RESERVATIONS: </b>
+                                            <div id="reservation-count-num">##</div>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -65,7 +76,7 @@
     </div>
 
     <script>
-        feather.replace()
+        feather.replace();
     </script>
 
 </body>

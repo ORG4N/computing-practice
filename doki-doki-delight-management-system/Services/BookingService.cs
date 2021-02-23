@@ -85,7 +85,10 @@ namespace doki_doki_delight_management_system.Services
 
             if (toDelete != null)
             {
-                data.Remove(toDelete);
+                if (data.Count > 1) { data.Remove(toDelete); }
+                else { data.Clear(); }
+
+
                 WriteData();
             }
 
