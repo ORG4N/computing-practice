@@ -3,8 +3,91 @@
 
 <body>
 
+    <!-- Modal -->
+    <div class="modal fade" id="customer-info-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <div class="w-100">
+                        <h5 class="modal-title">Customer Information</h5>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="container-fluid">
+
+                        <div class="row show-modal">
+                            <div class="col modal-item" style="text-align:center" id="id">
+                                <b>Customer ID</b>
+                            </div>
+                        </div>
+
+                        <hr class="my-1">
+
+                        <div class="row show-modal">
+                            <div class="col modal-item">
+                                <b>Role</b>
+                            </div>
+                            <div class="col modal-record" id="role">
+                                Retrieving...
+                            </div>
+                        </div>
+
+                        <div class="row show-modal">
+                            <div class="col modal-item">
+                                <b>Forename</b>
+                            </div>
+                            <div class="col modal-record" id="forename">
+                                Retrieving...
+                            </div>
+                        </div>
+
+                        <div class="row show-modal">
+                            <div class="col modal-item">
+                                <b>Surname</b>
+                            </div>
+                            <div class="col modal-record" id="surname">
+                                Retrieving...
+                            </div>
+                        </div>
+
+                        <div class="row show-modal">
+                            <div class="col modal-item">
+                                <b>Telephone Number</b>
+                            </div>
+                            <div class="col modal-record" id="tel">
+                                Retrieving...
+                            </div>
+                        </div>
+
+                        <div class="row show-modal">
+                            <div class="col modal-item">
+                                <b>Email</b>
+                            </div>
+                            <div class="col modal-record" id="email">
+                                Retrieving...
+                            </div>
+                        </div>
+
+                        <hr class="my-1">
+
+                        <div class="row show-modal" style="margin-bottom:4px">
+                            <div class="col modal-item" style="text-align:center; font-size:0.75vw">
+                                <a href="#" class="text-muted" data-dismiss="modal">
+                                    Cick away to close...
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <br>
     <div id="page" class="animate__animated animate__slideInDown">
+
         <div class="container-flex">
             <div class="row">
 
@@ -27,7 +110,7 @@
 
 
                                 <table class="table table-hover" style="margin-bottom:0">
-            
+
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -44,7 +127,6 @@
 
                                     <table class="table table-hover" id="bookings">
                                         <tbody>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -68,7 +150,7 @@
                         </div>
 
                     </div>
-                    
+
                 </div>
 
             </div>

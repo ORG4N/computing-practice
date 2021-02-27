@@ -59,16 +59,16 @@ h3{
     opacity: 1;
 }
   
-  .sidebar .nav-link .feather {
+.sidebar .nav-link .feather {
     margin-right: 4px;
     color: black;
-  }
+}
   
   
-  .sidebar .nav-link:hover .feather,
-  .sidebar .nav-link.active .feather {
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
     color: inherit;
-  }  
+}  
   
 .card-title{
     text-align: center;
@@ -308,4 +308,48 @@ h3{
     font-weight: normal;
     padding-right: 10px;
     text-align: right;
+}
+
+.modal-dialog {
+    width:50%;
+    position:absolute;
+    right:10%;
+    top:5%;
+}
+
+.modal-backdrop {
+    opacity: 0 !important;
+}
+
+.modal-title {
+    font-size: 1.3vw;
+}
+
+.modal-record {
+    text-align: right;
+    direction: rtl;
+    padding-right: 25px;
+    font-size: 0.75vw;
+}
+
+.modal-item {
+    text-align: left;
+    direction: ltr;
+    padding-left: 25px;
+    font-size: 0.8vw;
+}
+
+.modal-header {
+    background-color: #da5334;
+}
+
+.modal-body {
+    padding-top:0;
+    padding-bottom:0;
+}
+
+.show-modal {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height:20%
 }

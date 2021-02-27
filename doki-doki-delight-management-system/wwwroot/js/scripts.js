@@ -211,7 +211,25 @@ $(document).ready(function () {
             $('main').load('html/staff/removeBooking.html');
         });
     });
-})
+
+    $(document).on("click", ".customer-id-click", function () {
+
+        fetchUsers();
+
+        var fields = ["forename", "surname", "tel", "email", "role", "id"];
+
+        for (var i = 0; i < fields.length; i++) {
+
+            input = document.getElementById(fields[i]);
+            var name = "booking-customer-" + fields[i];
+            var item = sessionStorage.getItem(name);
+            input.innerHTML = item;
+        }
+
+        $(document.getElementById("id")).wrapInner("<b></b>");
+
+    });
+});
 
 function getCustomer() {
 
@@ -279,7 +297,6 @@ function getBookingID() {
             result.forEach(function (array) {
                 if (array.userID == sessionStorage.getItem("userID")) {
                     sessionStorage.setItem("bookingID", array.bookingID);
-                    console.log(sessionStorage.getItem("bookingID"));
                 }
             });
             document.getElementById("bookingID").innerHTML = sessionStorage.getItem("bookingID");
@@ -294,6 +311,28 @@ async function fetchUsers() {
     const raw = await fetch(url);
 
     const data = await raw.json();
+
+    //role, forename, surname, email, tel 
+
+    data.forEach(function (array) {
+        if (array.userID == sessionStorage.getItem("booking-customer-id")) {
+
+            sessionStorage.setItem("booking-customer-role", array.role);
+            sessionStorage.setItem("booking-customer-forename", array.forename);
+            sessionStorage.setItem("booking-customer-surname", array.surname);
+            sessionStorage.setItem("booking-customer-email", array.email);
+            sessionStorage.setItem("booking-customer-tel", array.tel);
+
+            console.log(sessionStorage.getItem("booking-customer-id"));
+            console.log(sessionStorage.getItem("booking-customer-role"));
+            console.log(sessionStorage.getItem("booking-customer-forename"));
+            console.log(sessionStorage.getItem("booking-customer-surname"));
+            console.log(sessionStorage.getItem("booking-customer-email"));
+            console.log(sessionStorage.getItem("booking-customer-tel"));
+
+        }
+    });
+
 }
 
 async function fetchBookings() {
@@ -307,10 +346,33 @@ async function fetchBookings() {
 
     data.forEach(({bookingID, userID, date, time, occupants}) => {
         $("#bookings").find('tbody').append(`<tr><td>${bookingID}</td><td>${userID}</td><td>${date}</td><td>${time}</td><td>${occupants}</td></tr>`);
-    });    
+    });
 
     var length = document.getElementById("bookings").rows.length;
     document.getElementById("reservation-count-num").innerHTML = length;
+
+    addLinks();
+}
+
+function addLinks() {
+
+    const table = document.getElementById("bookings");
+    var numRows = table.rows.length;
+
+    for (var i = 0; i < numRows; i++) {
+
+        var id = table.rows[i].cells[1];
+
+        $(id).wrapInner("<a href='#' class='customer-id-click' onclick='setSearchID(this.id)'" + `id='field-${i}'` + " data-toggle='modal' data-target='#customer-info-modal'></a>");
+    }
+
+}
+
+function setSearchID(id) {
+
+    var customer = document.getElementById(id).innerHTML;
+
+    sessionStorage.setItem("booking-customer-id", customer);
 }
 
 async function postUsers(data) {
