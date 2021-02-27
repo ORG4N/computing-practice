@@ -214,20 +214,20 @@ $(document).ready(function () {
 
     $(document).on("click", ".customer-id-click", function () {
 
-        fetchUsers();
+        $.when(fetchUsers()).done(function(){
 
-        var fields = ["forename", "surname", "tel", "email", "role", "id"];
+            var fields = ["forename", "surname", "tel", "email", "role", "id"];
 
-        for (var i = 0; i < fields.length; i++) {
+            for (var i = 0; i < fields.length; i++) {
 
-            input = document.getElementById(fields[i]);
-            var name = "booking-customer-" + fields[i];
-            var item = sessionStorage.getItem(name);
-            input.innerHTML = item;
-        }
+                input = document.getElementById(fields[i]);
+                var name = "booking-customer-" + fields[i];
+                var item = sessionStorage.getItem(name);
+                input.innerHTML = item;
+            }
 
-        $(document.getElementById("id")).wrapInner("<b></b>");
-
+            $(document.getElementById("id")).wrapInner("<b></b>");
+        });
     });
 });
 
