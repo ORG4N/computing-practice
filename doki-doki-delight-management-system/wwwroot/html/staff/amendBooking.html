@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="page" class="animate__animated animate__slideInDown">
+        <div class="container-flex" style="margin-top:1%">
+            <div class="row">
+                <div class="col-10 offset-2 amend-booking">
+                    <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px">
+                        <p id="reservation-header" class="lead form-title" style="text-align: center;">AMEND A RESERVATION HERE:</p>
+                        <hr class="my-4">
+
+                        <form class="was-validated" novalidate>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="inputCustomerID">Customer ID:</label>
+                                        <input type="text" class="form-control" id="inputCustomerID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-group">
+                                        <label for="inputReservationID">Reservation ID:</label>
+                                        <input type="text" class="form-control" id="inputReservationID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <div class="row">
+                                <div class="col">
+                                    <button type="button" class="btn btn-primary btn-block" data-toggle='modal' data-target='#customer-info-modal-2' id="searchBookingButton">
+                                        <i data-feather="check"></i>
+                                        Search for reservation
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-flex" style="margin-top:1%">
+            <div class="row">
+                <div class="col-10 offset-2 amend-booking">
+                    <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px">                            
+                        <div class="row">
+                            <div class="col-5">
+                                
+                                <div class="row show-modal">
+                                    <div class="col modal-item" style="text-align:center" id="id">
+                                        <b>Customer ID</b>
+                                    </div>
+                                </div>
+        
+                                <hr class="my-1">
+                
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Forename</b>
+                                    </div>
+                                    <div class="col modal-record" id="forename">
+                                        Retrieving...
+                                    </div>
+                                </div>
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Surname</b>
+                                    </div>
+                                    <div class="col modal-record" id="surname">
+                                        Retrieving...
+                                    </div>
+                                </div>
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Telephone Number</b>
+                                    </div>
+                                    <div class="col modal-record" id="tel">
+                                        Retrieving...
+                                    </div>
+                                </div>
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Email</b>
+                                    </div>
+                                    <div class="col modal-record" id="email">
+                                        Retrieving...
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-5 offset-2">
+                                
+                                <div class="row show-modal">
+                                    <div class="col modal-item" style="text-align:center" id="booking-id">
+                                        <b>Booking ID</b>
+                                    </div>
+                                </div>
+        
+                                <hr class="my-1">
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Date</b>
+                                    </div>
+                                    <div class="col modal-record" id="date">
+                                        Retrieving...
+                                    </div>
+                                </div>
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Time</b>
+                                    </div>
+                                    <div class="col modal-record" id="time">
+                                        Retrieving...
+                                    </div>
+                                </div>
+        
+                                <div class="row show-modal">
+                                    <div class="col modal-item">
+                                        <b>Occupancy</b>
+                                    </div>
+                                    <div class="col modal-record" id="occupants">
+                                        Retrieving...
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+                        
+                        <button type="submit" class="btn btn-danger btn-block" id="amendBookingButton">
+                            <i data-feather="alert-circle" style="vertical-align: middle;"></i>
+                            Edit this reservation...
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

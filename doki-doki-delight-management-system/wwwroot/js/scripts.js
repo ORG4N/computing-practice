@@ -179,6 +179,10 @@ $(document).ready(function () {
 
                                 var fields = ["forename", "surname", "tel", "email", "role", "id"];
 
+                                if (document.getElementById("amendBookingButton") != null) {
+                                    fields = ["forename", "surname", "tel", "email", "id"]
+                                }
+
                                 for (var i = 0; i < fields.length; i++) {
 
                                     input = document.getElementById(fields[i]);
@@ -190,14 +194,17 @@ $(document).ready(function () {
                                 $(document.getElementById("id")).wrapInner("<b></b>");
                                 $(document.getElementById("booking-id")).wrapInner("<b></b>");
 
-                                sessionStorage.clear();
-
                             });
                         }
                         else {
                             alert("Reservation doesn't exist... Try again.");
 
                             var fields = ["forename", "surname", "tel", "email", "role", "id", "booking-id", "date", "time", "occupants"];
+
+                            if (document.getElementById("amendBookingButton") != null) {
+                                fields = ["forename", "surname", "tel", "email", "id", "booking-id", "date", "time", "occupants"];
+                            }
+
                             for (var i = 0; i < fields.length; i++) {
                                 document.getElementById(fields[i]).innerHTML = " ";
                             }
@@ -207,6 +214,11 @@ $(document).ready(function () {
                         alert("Invalid input... Try again.");
 
                         var fields = ["forename", "surname", "tel", "email", "role", "id", "booking-id", "date", "time", "occupants"];
+
+                        if (document.getElementById("amendBookingButton") != null) {
+                            fields = ["forename", "surname", "tel", "email", "id", "booking-id", "date", "time", "occupants"];
+                        }
+
                         for (var i = 0; i < fields.length; i++) {
                             document.getElementById(fields[i]).innerHTML = " ";
                         }
@@ -267,6 +279,15 @@ $(document).ready(function () {
 
         element.addEventListener('animationend', () => {
             $('main').load('html/staff/removeBooking.html');
+        });
+    });
+
+    $(document).on("click", "#amendBooking", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/amendBooking.html');
         });
     });
 
