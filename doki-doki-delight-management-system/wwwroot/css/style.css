@@ -263,7 +263,7 @@ h3{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 60vh;
+    min-height: 55vh;
 }
 
 .form-title{
@@ -352,4 +352,8 @@ h3{
     padding-top: 15px;
     padding-bottom: 15px;
     height:20%
+}
+
+.modal-lg {
+    max-width: 100% !important;
 }

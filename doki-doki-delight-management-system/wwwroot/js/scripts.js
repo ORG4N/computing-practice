@@ -153,34 +153,92 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", "#searchBookingButton", function (e) {
+
+        const customerID = document.getElementById("inputCustomerID").value;
+        const bookingID = document.getElementById("inputReservationID").value;
+
+        $.ajax({
+            url: "https://localhost:44375/api/bookings",
+            type: "GET",
+            success: function (result) {
+
+                result.forEach(function (array) {
+                    if (array.userID == customerID) {
+                        if (array.bookingID == bookingID) {
+
+                            sessionStorage.setItem("booking-customer-id", customerID);
+
+                            document.getElementById("booking-id").innerHTML = array.bookingID;
+                            document.getElementById("date").innerHTML = array.date;
+                            document.getElementById("time").innerHTML = array.time;
+                            document.getElementById("occupants").innerHTML = array.occupants;
+
+
+                            $.when(fetchUsers()).done(function () {
+
+                                var fields = ["forename", "surname", "tel", "email", "role", "id"];
+
+                                for (var i = 0; i < fields.length; i++) {
+
+                                    input = document.getElementById(fields[i]);
+                                    var name = "booking-customer-" + fields[i];
+                                    var item = sessionStorage.getItem(name);
+                                    input.innerHTML = item;
+                                }
+
+                                $(document.getElementById("id")).wrapInner("<b></b>");
+                                $(document.getElementById("booking-id")).wrapInner("<b></b>");
+
+                                sessionStorage.clear();
+
+                            });
+                        }
+                        else {
+                            alert("Reservation doesn't exist... Try again.");
+
+                            var fields = ["forename", "surname", "tel", "email", "role", "id", "booking-id", "date", "time", "occupants"];
+                            for (var i = 0; i < fields.length; i++) {
+                                document.getElementById(fields[i]).innerHTML = " ";
+                            }
+                        }
+                    }
+                    else {
+                        alert("Invalid input... Try again.");
+
+                        var fields = ["forename", "surname", "tel", "email", "role", "id", "booking-id", "date", "time", "occupants"];
+                        for (var i = 0; i < fields.length; i++) {
+                            document.getElementById(fields[i]).innerHTML = " ";
+                        }
+                    }
+                });
+            }
+        });
+
+    });
+
     $(document).on("click", "#removeBookingButton", function (e) {
 
         e.preventDefault();
-        const element = document.getElementById("removeBookingButton");
 
-        if (element.classList.contains("disabled")) {
-            alert("Please wait!");
-        }
+        const customerID = document.getElementById("inputCustomerID").value;
+        const bookingID = document.getElementById("inputReservationID").value;
 
-        else {
-            const customerID = document.getElementById("inputCustomerID").value;
-            const bookingID = document.getElementById("inputReservationID").value;
+        $.ajax({
+            url: "https://localhost:44375/api/bookings",
+            type: "GET",
+            success: function (result) {
 
-            $.ajax({
-                url: "https://localhost:44375/api/bookings",
-                type: "GET",
-                success: function (result) {
-
-                    result.forEach(function (array) {
-                        if (array.userID == customerID) {
-                            if (array.bookingID == bookingID) {
-                                deleteReservation(bookingID);
-                            }
+                result.forEach(function (array) {
+                    if (array.userID == customerID) {
+                        if (array.bookingID == bookingID) {
+                            deleteReservation(bookingID);
                         }
-                    });
-                }
-            });
-        }
+                    }
+                });
+            }
+        });
+        
     });
 
     $(document).on("click", "#viewBookings", function () {
@@ -227,6 +285,8 @@ $(document).ready(function () {
             }
 
             $(document.getElementById("id")).wrapInner("<b></b>");
+            sessionStorage.clear();
+
         });
     });
 });
@@ -312,8 +372,6 @@ async function fetchUsers() {
 
     const data = await raw.json();
 
-    //role, forename, surname, email, tel 
-
     data.forEach(function (array) {
         if (array.userID == sessionStorage.getItem("booking-customer-id")) {
 
@@ -322,14 +380,6 @@ async function fetchUsers() {
             sessionStorage.setItem("booking-customer-surname", array.surname);
             sessionStorage.setItem("booking-customer-email", array.email);
             sessionStorage.setItem("booking-customer-tel", array.tel);
-
-            console.log(sessionStorage.getItem("booking-customer-id"));
-            console.log(sessionStorage.getItem("booking-customer-role"));
-            console.log(sessionStorage.getItem("booking-customer-forename"));
-            console.log(sessionStorage.getItem("booking-customer-surname"));
-            console.log(sessionStorage.getItem("booking-customer-email"));
-            console.log(sessionStorage.getItem("booking-customer-tel"));
-
         }
     });
 

@@ -43,7 +43,7 @@
                                             <b>Forename</b>
                                         </div>
                                         <div class="col field-record" id="forename">
-                                            
+
                                         </div>
                                     </div>
 
@@ -54,7 +54,7 @@
                                             <b>Surname</b>
                                         </div>
                                         <div class="col field-record" id="surname">
-                                            
+
                                         </div>
                                     </div>
 
@@ -64,9 +64,9 @@
                                         <div class="col field-header">
                                             <b>Telephone Number</b>
                                         </div>
-                                        
+
                                         <div class="col field-record" id="tel">
-                                            
+
                                         </div>
 
                                     </div>
@@ -78,7 +78,7 @@
                                             <b>Email</b>
                                         </div>
                                         <div class="col field-record" id="email">
-                                            
+
                                         </div>
                                     </div>
 
@@ -117,7 +117,7 @@
                                             <b>Date</b>
                                         </div>
                                         <div class="col field-record" id="date">
-                                            
+
                                         </div>
                                     </div>
 
@@ -140,7 +140,7 @@
                                         </div>
 
                                         <div class="col field-record" id="occupants">
-                                            
+
                                         </div>
 
                                     </div>
@@ -202,7 +202,7 @@
 
                                     <div class="row show-booking justify-content-center">
                                         <div class="field-record" style="direction: ltr; text-align:center;padding:0">
-                                            An email will be sent to your email with your reservation details                                       
+                                            An email will be sent to your email with your reservation details
                                         </div>
                                     </div>
 
@@ -244,13 +244,13 @@
         // Because this html file is getting reused for creating reservations from both the customer and staff access points,
         // this code is needed so that when the user is on the staff section the styling and formatting looks normal
         const staffbar = document.querySelector('.staffbar');
-        if (document.contains(staffbar)){
-            document.querySelector('#heading-stuff').remove();   
-            document.querySelector('#confirmation').setAttribute("id", "confirmation");  
-            
+        if (document.contains(staffbar)) {
+            document.querySelector('#heading-stuff').remove();
+            document.querySelector('#confirmation').setAttribute("id", "confirmation");
+
             // Required to make the content appear in the correct place
-            $("#confirmation" ).wrap( "<div class='col-10 offset-2'></div>" );
-            $(".col-10" ).wrap( "<div class='row'></div>" );
+            $("#confirmation").wrap("<div class='col-10 offset-2'></div>");
+            $(".col-10").wrap("<div class='row'></div>");
         }
 
     </script>
