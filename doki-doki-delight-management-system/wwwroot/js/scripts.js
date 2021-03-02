@@ -235,6 +235,9 @@ $(document).ready(function () {
                                 $(document.getElementById("id")).wrapInner("<b></b>");
                                 $(document.getElementById("booking-id")).wrapInner("<b></b>");
 
+                                sessionStorage.setItem("booking-customer-occupants", array.occupants);
+                                sessionStorage.setItem("booking-customer-date", array.date);
+                                sessionStorage.setItem("booking-customer-time", array.time);
                             });
                         }
 
@@ -339,14 +342,26 @@ $(document).ready(function () {
 
         element.addEventListener('animationend', () => {
             $('main').load('html/staff/amendBooking.html');
+            sessionStorage.setItem("amending", "true");
         });
     });
+
+
+    $(document).on("click", "#amendBookingButton", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/addBooking.html');
+        });
+    });
+
 
     // If the user clicks on the customer id of a booking on the bookings table (bookings.html)
     $(document).on("click", ".customer-id-click", function () {
 
         // Call the fetchUsers function and execute the following code once the function is done
-        $.when(fetchUsers()).done(function(){
+        $.when(fetchUsers()).done(function () {
 
             var fields = ["forename", "surname", "tel", "email", "role", "id"];
 
@@ -613,7 +628,7 @@ function dateAndTime() {
         maxDate: month,
     });
 
-    flatpickr(".selector", {});
+    flatpickr(".flatpickr", {});
     document.getElementById("inputTime").flatpickr({
         enableTime: true,
         noCalendar: true,

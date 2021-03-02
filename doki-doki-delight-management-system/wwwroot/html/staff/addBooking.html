@@ -30,6 +30,23 @@
 
             document.getElementById("reservation-header").innerHTML = "CREATE A RESERVATION HERE:";
             document.getElementById("reservation-header").classList.add("form-title");
+
+            if (sessionStorage.getItem("amending") == "true") {
+                $("#inputForename").val(sessionStorage.getItem("booking-customer-forename"));
+                $("#inputSurname").val(sessionStorage.getItem("booking-customer-surname"));
+                $("#inputTel").val(sessionStorage.getItem("booking-customer-tel"));
+                $("#inputEmail").val(sessionStorage.getItem("booking-customer-email"));
+                $("#inputDate").val(sessionStorage.getItem("booking-customer-date"));
+                $("#inputTime").val(sessionStorage.getItem("booking-customer-time"));
+
+                document.getElementById("reservation-header").innerHTML = "EDIT THE RESERVATIONS DETAILS:";
+                document.getElementById("reservationButton").innerHTML = "Submit Changes";
+
+                document.getElementById("reservationButton").id = "submitChangesButton";
+
+                sessionStorage.setItem("amending", "false");
+            }
+
             checkDate();
 
         });
