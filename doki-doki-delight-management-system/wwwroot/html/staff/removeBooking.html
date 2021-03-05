@@ -127,7 +127,7 @@
 
                     <hr class="my-1">
 
-                    <button type="submit" class="btn btn-danger btn-block" id="removeBookingButton">
+                    <button type="submit" class="btn btn-danger btn-block" id="removeBookingButton" title="" data-content="" data-placement="bottom" data-trigger="focus">
                         <i data-feather="alert-circle" style="vertical-align: middle;"></i>
                         Cancel Reservation
                     </button>
@@ -150,7 +150,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="inputCustomerID">Customer ID:</label>
-                                        <input type="text" class="form-control" id="inputCustomerID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+">
+                                        <input type="text" class="form-control" id="inputCustomerID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="inputReservationID">Reservation ID:</label>
-                                        <input type="text" class="form-control" id="inputReservationID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+">
+                                        <input type="text" class="form-control" id="inputReservationID" minlength="8" maxlength="8" placeholder="8 digit number" required pattern="[0-9]+" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle='modal' data-target='#customer-info-modal-2' id="searchBookingButton">
+                                    <button type="button" class="btn btn-primary btn-block" id="searchBookingButton" title="" data-content="" data-placement="bottom">
                                         <i data-feather="check"></i>
                                         Search for reservation
                                     </button>
