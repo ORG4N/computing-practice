@@ -6,6 +6,8 @@ $(document).ready(function () {
 
     $(function () {
         $("#sidebar-placeholder").load('html/nav.html');
+        localStorage.setItem("signedIn", "false");
+
     });
 
 
@@ -21,6 +23,8 @@ $(document).ready(function () {
 
     // If user clicks the sidebar home button, send back to front page
     $(document).on("click", "#homeButton", function () {
+
+        localStorage.setItem("signedIn", "false");
 
         // If the user is on the staff dashboard page then the staffbar will animate out to the left
         var element = document.querySelector('.staffbar');
@@ -143,8 +147,29 @@ $(document).ready(function () {
                 postUsers(customer);
                 postBookings(reservation);
 
+
                 getUserID();
-                $('main').load('html/confirmation.html');
+
+                const staffAuth = localStorage.getItem("signedIn");
+
+                if(staffAuth == "true") {
+                    $('#page').load('html/staff/amendBooking.html #details-container', function () {
+                        document.getElementById("amendBookingButton").id = "viewBookings-2";
+                        document.getElementById("viewBookings-2").innerHTML = "View all bookings...";
+
+                        var i;
+                        var fields = ["date", "time", "occupants", "forename", "surname", "email", "tel"];
+
+                        for (i = 0; i < fields.length; i++) {
+                            document.getElementById(fields[i]).innerHTML = sessionStorage.getItem(fields[i]);
+                        }
+
+                    });
+                }
+                
+                else {
+                    $('main').load('html/confirmation.html');
+                }
             };
         };
     });
@@ -181,6 +206,7 @@ $(document).ready(function () {
 
                 // Fetches all the bookings and dynamically writes them to the screen in table format
                 fetchBookings();
+                localStorage.setItem("signedIn", "true");
             });
         });
     });
@@ -319,13 +345,24 @@ $(document).ready(function () {
 
                             $(button).popover('show');
                             $('.popover-header').css('background-color', '#28a745');
-
                         }
                     }
                 });
             }
         });
         
+    });
+
+    // Add Booking return button - view all reservations in table format
+    $(document).on("click", "#viewBookings-2", function () {
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/bookings.html', function () {
+                fetchBookings(); // Fetches bookings from web api and writes them to a table
+            });
+        });
     });
 
     // Staffbar navigation button - view all reservations in table format
@@ -452,8 +489,17 @@ function getUserID() {
                     }
                 }
 
-                // Write the fetched user id to the screen
-                document.getElementById("userID").innerHTML = sessionStorage.getItem("userID");
+                const staffAuth = localStorage.getItem("signedIn");
+                if (staffAuth != "true") {
+
+                    // Write the fetched user id to the screen
+                    document.getElementById("userID").innerHTML = sessionStorage.getItem("userID");
+                }
+
+                else {
+                    document.getElementById("id").innerHTML = sessionStorage.getItem("userID");
+                    $(document.getElementById("id")).wrapInner("<b></b>");
+                }
 
                 // Use  the user id to then fetch the booking ID
                 getBookingID();
@@ -485,7 +531,15 @@ function getBookingID() {
                     sessionStorage.setItem("bookingID", array.bookingID);
                 }
             });
-            document.getElementById("bookingID").innerHTML = sessionStorage.getItem("bookingID");
+
+            const staffAuth = localStorage.getItem("signedIn");
+            if (staffAuth != "true") {
+                document.getElementById("bookingID").innerHTML = sessionStorage.getItem("bookingID");
+            }
+            else {
+                document.getElementById("booking-id").innerHTML = sessionStorage.getItem("bookingID");
+                $(document.getElementById("booking-id")).wrapInner("<b></b>");
+            }
         }
     });
 }
