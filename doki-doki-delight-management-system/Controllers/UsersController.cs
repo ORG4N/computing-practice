@@ -14,14 +14,14 @@ namespace doki_doki_delight_management_system.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        // GET: api/<DataController>
+        // GET: api/<UsersController>
         [HttpGet]
         public IEnumerable<User> Get()
         {
             return UsersService.GetData().ToArray();
         }
 
-        // POST api/<DataController>
+        // POST api/<UsersController>
         [HttpPost]
         public void Post([FromBody] User user)
         {
@@ -29,6 +29,13 @@ namespace doki_doki_delight_management_system.Controllers
             UsersService service = new UsersService();
             user.UserID = service.SetUserID();
             UsersService.PushData(user);
+        }
+
+        // PUT api/<UsersController>
+        [HttpPut("{id}")]
+        public void Put([FromBody] User user, string id)
+        {
+            UsersService.Amend(user, id);
         }
     }
 }

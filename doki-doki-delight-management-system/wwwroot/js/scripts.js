@@ -152,7 +152,7 @@ $(document).ready(function () {
 
                 const staffAuth = localStorage.getItem("signedIn");
 
-                if(staffAuth == "true") {
+                if (staffAuth == "true") {
                     $('#page').load('html/staff/amendBooking.html #details-container', function () {
                         document.getElementById("amendBookingButton").id = "viewBookings-2";
                         document.getElementById("viewBookings-2").innerHTML = "View all bookings...";
@@ -166,7 +166,7 @@ $(document).ready(function () {
 
                     });
                 }
-                
+
                 else {
                     $('main').load('html/confirmation.html');
                 }
@@ -222,18 +222,13 @@ $(document).ready(function () {
         const button = document.getElementById("searchBookingButton");
         $(button).popover('hide');
 
+        button.addEventListener("mousedown", function () {
+            $(button).popover('hide');
+        });
+
         if (bookingID.length != 8 || customerID.length != 8) {
-            button.title = "Invalid Input";
-            button.dataset.content = "ID's should be 8 digits long...";
-
-            $(button).popover('show');
-            $('.popover-header').css('background-color', '#FF6663');
-        }
-
-        // Had to write the else if this weird way becauase visual studio was being weird with the dotted line indentation stuff
-        else {
-
             if (bookingID == "" || customerID == "") {
+
                 button.title = "Invalid Input";
                 button.dataset.content = "Not all fields have inputs...";
 
@@ -241,79 +236,83 @@ $(document).ready(function () {
                 $('.popover-header').css('background-color', '#FF6663');
 
             }
-
             else {
+                button.title = "Invalid Input";
+                button.dataset.content = "ID's should be 8 digits long...";
 
-                // Using Jquery, interface with the web api and compare the inputs to existing bookings
-                $.ajax({
-                    url: "https://localhost:44375/api/bookings",
-                    type: "GET",
-                    success: function (result) {
-
-                        result.forEach(function (array) {
-                            if (array.userID == customerID) {           // Find an existing user - depending on the input
-                                if (array.bookingID == bookingID) {     // See if that user's bookings correlates to the input booking ID
-
-                                    sessionStorage.setItem("booking-customer-id", customerID);
-
-                                    // Using values from the matching web api booking, write them to the screen via innerHTML
-                                    document.getElementById("booking-id").innerHTML = array.bookingID;
-                                    document.getElementById("date").innerHTML = array.date;
-                                    document.getElementById("time").innerHTML = array.time;
-                                    document.getElementById("occupants").innerHTML = array.occupants;
-
-                                    // Only execute the following code once the fetchUsers() function has completed
-                                    // This function fetches the user corresponding to the booking id and stores their info in session storage
-                                    $.when(fetchUsers()).done(function () {
-
-                                        // Delete booking functionality displays role whilst amend booking doesn't and therefore the arrays are different
-                                        var fields = ["forename", "surname", "tel", "email", "role", "id"];
-
-                                        if (document.getElementById("amendBookingButton") != null) {
-                                            fields = ["forename", "surname", "tel", "email", "id"]
-                                        }
-
-                                        // Using the array of id's it takes the corresonding data from session storage and writes it as inner html of the id div
-                                        for (var i = 0; i < fields.length; i++) {
-
-                                            input = document.getElementById(fields[i]);
-                                            var name = "booking-customer-" + fields[i];
-                                            var item = sessionStorage.getItem(name);
-                                            input.innerHTML = item;
-                                        }
-
-                                        // Make the ID's bold by wrapping them in <b> attribute 
-                                        $(document.getElementById("id")).wrapInner("<b></b>");
-                                        $(document.getElementById("booking-id")).wrapInner("<b></b>");
-
-                                        sessionStorage.setItem("booking-customer-occupants", array.occupants);
-                                        sessionStorage.setItem("booking-customer-date", array.date);
-                                        sessionStorage.setItem("booking-customer-time", array.time);
-
-                                        // Modal will only be shown if there's a valid input
-                                        $('#customer-info-modal-2').modal('show');
-
-                                    });
-                                }
-
-                                else {
-                                    button.title = "Invalid Input";
-                                    button.dataset.content = "Reservation doesn't exist...";
-                                    $(button).popover('show');
-                                    $('.popover-header').css('background-color', '#FF6663');
-                                }
-                            }
-
-                            else {
-                                button.title = "Invalid Input";
-                                button.dataset.content = "Reservation doesn't exist...";
-                                $(button).popover('show');
-                                $('.popover-header').css('background-color', '#FF6663');
-                            }
-                        });
-                    }
-                });
+                $(button).popover('show');
+                $('.popover-header').css('background-color', '#FF6663');
             }
+        }
+
+        else {
+            // Using Jquery, interface with the web api and compare the inputs to existing bookings
+            $.ajax({
+                url: "https://localhost:44375/api/bookings",
+                type: "GET",
+                success: function (result) {
+
+                    var found = false;
+
+                    result.forEach(function (array) {
+                        if (array.userID == customerID) {           // Find an existing user - depending on the input
+                            if (array.bookingID == bookingID) {     // See if that user's bookings correlates to the input booking ID
+
+                                found = true;
+
+                                sessionStorage.setItem("booking-customer-id", customerID);
+                                sessionStorage.setItem("booking-customer-booking-id", bookingID);
+
+                                // Using values from the matching web api booking, write them to the screen via innerHTML
+                                document.getElementById("booking-id").innerHTML = array.bookingID;
+                                document.getElementById("date").innerHTML = array.date;
+                                document.getElementById("time").innerHTML = array.time;
+                                document.getElementById("occupants").innerHTML = array.occupants;
+
+                                // Only execute the following code once the fetchUsers() function has completed
+                                // This function fetches the user corresponding to the booking id and stores their info in session storage
+                                $.when(fetchUsers()).done(function () {
+
+                                    // Delete booking functionality displays role whilst amend booking doesn't and therefore the arrays are different
+                                    var fields = ["forename", "surname", "tel", "email", "role", "id"];
+
+                                    if (document.getElementById("amendBookingButton") != null) {
+                                        fields = ["forename", "surname", "tel", "email", "id"]
+                                    }
+
+                                    // Using the array of id's it takes the corresonding data from session storage and writes it as inner html of the id div
+                                    for (var i = 0; i < fields.length; i++) {
+
+                                        input = document.getElementById(fields[i]);
+                                        var name = "booking-customer-" + fields[i];
+                                        var item = sessionStorage.getItem(name);
+                                        input.innerHTML = item;
+                                    }
+
+                                    // Make the ID's bold by wrapping them in <b> attribute 
+                                    $(document.getElementById("id")).wrapInner("<b></b>");
+                                    $(document.getElementById("booking-id")).wrapInner("<b></b>");
+
+                                    sessionStorage.setItem("booking-customer-occupants", array.occupants);
+                                    sessionStorage.setItem("booking-customer-date", array.date);
+                                    sessionStorage.setItem("booking-customer-time", array.time);
+
+                                    // Modal will only be shown if there's a valid input
+                                    $('#customer-info-modal-2').modal('show');
+
+                                });
+                            }
+                        }
+                    });
+
+                    if (found == false) {
+                        button.title = "Invalid Input";
+                        button.dataset.content = "Reservation doesn't exist...";
+                        $(button).popover('show');
+                        $('.popover-header').css('background-color', '#FF6663');
+                    }
+                }
+            });
         }
     });
 
@@ -350,7 +349,7 @@ $(document).ready(function () {
                 });
             }
         });
-        
+
     });
 
     // Add Booking return button - view all reservations in table format
@@ -441,6 +440,56 @@ $(document).ready(function () {
 
         });
     });
+
+    $(document).on("click", "#submitChangesButton", function (e) {
+
+        e.preventDefault();
+
+        const element = document.getElementById("submitChangesButton");
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+        }
+
+        else {
+            // Custom function that will check for specific characteristics of the inputs (currently checks if empty)
+            var valid = formValidate();
+
+            if (valid == true) {
+
+                // Disable the button
+                element.classList.add("disabled");
+
+                sessionStorage.setItem("booking-customer-forename", document.getElementById("inputForename").value);
+                sessionStorage.setItem("booking-customer-surname", document.getElementById("inputSurname").value);
+                sessionStorage.setItem("booking-customer-email", document.getElementById("inputEmail").value);
+                sessionStorage.setItem("booking-customer-tel", document.getElementById("inputTel").value);
+
+                sessionStorage.setItem("booking-customer-occupants", document.getElementById("inputOccupants").value);
+                sessionStorage.setItem("booking-customer-date", document.getElementById("inputDate").value);
+                sessionStorage.setItem("booking-customer-time", document.getElementById("inputTime").value);
+
+                var customer = {
+                    "userID": (sessionStorage.getItem("booking-customer-id")),
+                    "role": (sessionStorage.getItem("booking-customer-role")),
+                    "forename": (sessionStorage.getItem("booking-customer-forename")),
+                    "surname": (sessionStorage.getItem("booking-customer-surname")),
+                    "email": (sessionStorage.getItem("booking-customer-email")),
+                    "tel": (sessionStorage.getItem("booking-customer-tel"))
+                };
+
+                var reservation = {
+                    "bookingID": (sessionStorage.getItem("booking-customer-booking-id")),
+                    "userID": (sessionStorage.getItem("booking-customer-id")),
+                    "occupants": (sessionStorage.getItem("booking-customer-occupants")),
+                    "date": (sessionStorage.getItem("booking-customer-date")),
+                    "time": (sessionStorage.getItem("booking-customer-time"))
+                };;
+
+                updateBooking(reservation.bookingID, reservation);
+                updateCustomer(customer.userID, customer);
+            }
+        }
+    });
 });
 
 // Using each element within fields as an ID, iterate through them and change their inner html with whatever
@@ -467,6 +516,36 @@ async function deleteReservation(id) {
 
     } catch (e) {
         throw "Failed to delete";
+    }
+}
+
+async function updateBooking(id, update) {
+    const url = "https://localhost:44375/api/bookings/";
+
+    try {
+        await fetch(url + id, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(update),
+        });
+
+    } catch (e) {
+        throw "Failed to update";
+    }
+}
+
+async function updateCustomer(id, update) {
+    const url = "https://localhost:44375/api/users/";
+
+    try {
+        await fetch(url + id, {
+            method: "PUT",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(update),
+        });
+
+    } catch (e) {
+        throw "Failed to update";
     }
 }
 
@@ -576,7 +655,7 @@ async function fetchBookings() {
     $("#bookings tbody tr").remove();
 
     // Iterate through each booking on the interface and draws it to the screen
-    data.forEach(({bookingID, userID, date, time, occupants}) => {
+    data.forEach(({ bookingID, userID, date, time, occupants }) => {
         $("#bookings").find('tbody').append(`<tr><td>${bookingID}</td><td>${userID}</td><td>${date}</td><td>${time}</td><td>${occupants}</td></tr>`);
     });
 
@@ -620,8 +699,7 @@ async function postUsers(data) {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
-        }).then((result) =>
-        {
+        }).then((result) => {
             getUserID();    // Once the post is finished then fetch the ID
         });
 
@@ -674,7 +752,7 @@ function formValidate() {
 }
 
 // Round the value within the time input field to the nearest hour or half-hour
-function checkTime(){
+function checkTime() {
 
     var time = document.getElementById("inputTime").value;
     console.log(time);
@@ -682,9 +760,9 @@ function checkTime(){
     var split = time.split(":");
     var min = split[1];
 
-    if (min < 15){ min = "00";}
-    else if (min < 45){ min = "30";}
-    else { min = "00";}
+    if (min < 15) { min = "00"; }
+    else if (min < 45) { min = "30"; }
+    else { min = "00"; }
 
     time = split[0] + ":" + min;
 
@@ -723,16 +801,16 @@ function dateAndTime() {
 }
 
 // Validation colours for the datepicker as pikaday isnt compatible with the automated javascript stuff
-function checkDate(){
+function checkDate() {
     var date = document.getElementById("inputDate").value;
-    
+
     // make border red
-    if(date==""){
-        $(document.getElementById("inputDate")).css("border","1px solid #dc3545");
+    if (date == "") {
+        $(document.getElementById("inputDate")).css("border", "1px solid #dc3545");
     }
 
     // make border green
-    else if(date!=""){
-        $(document.getElementById("inputDate")).css("border",  "1px solid #28a745");
+    else if (date != "") {
+        $(document.getElementById("inputDate")).css("border", "1px solid #28a745");
     }
 }

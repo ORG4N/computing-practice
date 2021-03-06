@@ -37,5 +37,12 @@ namespace doki_doki_delight_management_system.Controllers
         {
             BookingService.Delete(id);
         }
+
+        // PUT api/<BookingController>
+        [HttpPut("{id}")]
+        public void Put([FromBody] Booking booking, string id)
+        {
+            BookingService.Amend(booking, id);
+        }
     }
 }

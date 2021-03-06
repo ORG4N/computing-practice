@@ -64,7 +64,7 @@ namespace doki_doki_delight_management_system.Services
             return data;
         }
 
-        // Write the data back to the csv file
+        // Push data to the list
         public static void PushData(Booking booking)
         {
             data.Add(booking);
@@ -72,6 +72,7 @@ namespace doki_doki_delight_management_system.Services
 
         }
 
+        // Remove the booking from the list and then write the list to the csv (removes the booking)
         public static void Delete(string id)
         {
             Booking toDelete = null;
@@ -94,6 +95,7 @@ namespace doki_doki_delight_management_system.Services
 
         }
 
+        // Write data back to the csv file
         private static void WriteData()
         {
             try
@@ -113,7 +115,6 @@ namespace doki_doki_delight_management_system.Services
             catch (IOException) { }
         }
 
-
         // Calculate the ID of each booking object and putting it into an 8 digit format
         public string SetBookingID()
         {
@@ -126,11 +127,26 @@ namespace doki_doki_delight_management_system.Services
             return id;
         }
 
+        // Returns the user ID
         public string GetUserID()
         {
             string id = UserID;
 
             return id;
+        }
+
+        // Make changes to one of the booking objects in the list and write changes back to csv
+        public static void Amend(Booking booking, string id)
+        {
+            for (int i=0; i<data.Count; i++)
+            {
+                if (id == data[i].BookingID)
+                {
+                    data[i] = booking;
+                }
+            }
+
+            WriteData();
         }
     }
 }

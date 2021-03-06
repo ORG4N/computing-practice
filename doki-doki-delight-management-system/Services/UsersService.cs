@@ -66,13 +66,19 @@ namespace doki_doki_delight_management_system.Services
             return data;
         }
 
-        // Write the data back to the csv file
+        // Push data to the list
         public static void PushData(User user)
         {
             data.Add(user);
+            WriteData();
+        }
+
+        // Write data back to the csv file
+        private static void WriteData()
+        {
             try
             {
-                using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Open, FileAccess.Write))
+                using (FileStream fs = File.Open("wwwroot/data/Users.csv", FileMode.Create, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {
@@ -98,6 +104,20 @@ namespace doki_doki_delight_management_system.Services
             SettingsService.UpdateID(count, "UserID");
 
             return id;
+        }
+
+        // Update user info by writing it back to the csv
+        public static void Amend(User user, string id)
+        {
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (id == data[i].UserID)
+                {
+                    data[i] = user;
+                }
+            }
+
+            WriteData();
         }
     }
 }
