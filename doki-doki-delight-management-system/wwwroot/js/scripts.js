@@ -417,6 +417,17 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", "#manageVenue", function () {
+
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/venue.html');
+        });
+    });
+
+
 
     // If the user clicks on the customer id of a booking on the bookings table (bookings.html)
     $(document).on("click", ".customer-id-click", function () {

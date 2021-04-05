@@ -258,6 +258,14 @@ h3{
     min-height: 100vh;
 }
 
+#add-booking-placeholder2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
 #remove-booking{
     display: flex;
     flex-direction: column;
@@ -365,4 +373,10 @@ h3{
 
 #removeBookingButton.popover-header {
     background-color: #dc3545;
+}
+
+.equal-column-height {
+    float: left;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
 }
