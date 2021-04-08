@@ -423,8 +423,72 @@ $(document).ready(function () {
         element.classList.add('animate__animated', 'animate__slideOutRight');
 
         element.addEventListener('animationend', () => {
-            $('main').load('html/staff/venue.html');
+            $('main').load('html/staff/venue.html', function () {
+
+                $.when(fetchVenue()).done(function () {
+                    writeVenueInfo();
+                });
+            });
         });
+    });
+
+    $(document).on("click", "#venueButton", function (e) {
+        e.preventDefault();
+
+        const element = document.getElementById("venueButton");
+
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+        }
+
+        else {
+            element.classList.add("disabled");
+
+            var days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+            var daysClosed = [];
+
+            for (var i = 0; i < days.length; i++){
+                var element2 = document.getElementById(days[i]);
+
+                if ($(element2).prop('checked')) {
+                    daysClosed.push(true);
+                }
+                else {
+                    daysClosed.push(false);
+                }
+            }
+
+            if (document.getElementById("inputCapacity").value == "") {
+                document.getElementById("inputCapacity").value = sessionStorage.getItem("capacity");
+            }
+
+            if (document.getElementById("inputOpeningTime").value == "") {
+                document.getElementById("inputOpeningTime").value = sessionStorage.getItem("opening-time");
+            }
+
+            if (document.getElementById("inputClosingTime").value == "") {
+                document.getElementById("inputClosingTime").value = sessionStorage.getItem("closing-time");
+            }
+
+            var venue = {
+                "capacity": (document.getElementById("inputCapacity").value),
+                "openingTime": (document.getElementById("inputOpeningTime").value),
+                "closingTime": (document.getElementById("inputClosingTime").value),
+                "mondayClosed": daysClosed[0],
+                "tuesdayClosed": daysClosed[1],
+                "wednesdayClosed": daysClosed[2],
+                "thursdayClosed": daysClosed[3],
+                "fridayClosed": daysClosed[4],
+                "saturdayClosed": daysClosed[5],
+                "sundayClosed": daysClosed[6],
+            };
+
+            $.when(postVenue(venue)).done(function () {
+                $.when(fetchVenue()).done(function () {
+                    writeVenueInfo();
+                });
+            });
+        }
     });
 
 
@@ -502,6 +566,54 @@ $(document).ready(function () {
         }
     });
 });
+
+function writeVenueInfo() {
+
+    document.getElementById("capacity").innerHTML = sessionStorage.getItem("capacity");
+    document.getElementById("opening-time").innerHTML = sessionStorage.getItem("opening-time");
+    document.getElementById("closing-time").innerHTML = sessionStorage.getItem("closing-time");
+
+    var fields = ["days-closed-0", "days-closed-1", "days-closed-2", "days-closed-3", "days-closed-4", "days-closed-5", "days-closed-6"];
+
+    for (var i = 0; i < fields.length; i++) {
+        if (sessionStorage.getItem(fields[i]) != null) {
+            if (sessionStorage.getItem(fields[i]) == "true") {
+
+                if (fields[i] == "days-closed-0") {
+                    document.getElementById(fields[i]).innerHTML = "Monday";
+                    $("#monday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-1") {
+                    document.getElementById(fields[i]).innerHTML = "Tuesday";
+                    $("#tuesday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-2") {
+                    document.getElementById(fields[i]).innerHTML = "Wednesday";
+                    $("#wednesday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-3") {
+                    document.getElementById(fields[i]).innerHTML = "Thursday";
+                    $("#thursday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-4") {
+                    document.getElementById(fields[i]).innerHTML = "Friday";
+                    $("#friday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-5") {
+                    document.getElementById(fields[i]).innerHTML = "Saturday";
+                    $("#saturday").attr("checked", true);
+                }
+                if (fields[i] == "days-closed-6") {
+                    document.getElementById(fields[i]).innerHTML = "Sunday";
+                    $("#sunday").attr("checked", true);
+                }
+            }
+            else {
+                document.getElementById(fields[i]).innerHTML = "";
+            }
+        }
+    }
+}
 
 // Using each element within fields as an ID, iterate through them and change their inner html with whatever
 // data is stored as the value of the id key  - called on the confirmation.html page
@@ -596,6 +708,30 @@ function getUserID() {
             });
         }
     });
+}
+
+async function fetchVenue() {
+
+    const url = "https://localhost:44375/api/venue";
+    const raw = await fetch(url);
+
+    const data = await raw.json();
+
+    data.forEach(function (array) {
+
+        sessionStorage.setItem("capacity", array.capacity);
+        sessionStorage.setItem("opening-time", array.openingTime);
+        sessionStorage.setItem("closing-time", array.closingTime);
+
+        sessionStorage.setItem("days-closed-0", array.mondayClosed);
+        sessionStorage.setItem("days-closed-1", array.tuesdayClosed);
+        sessionStorage.setItem("days-closed-2", array.wednesdayClosed);
+        sessionStorage.setItem("days-closed-3", array.thursdayClosed);
+        sessionStorage.setItem("days-closed-4", array.fridayClosed);
+        sessionStorage.setItem("days-closed-5", array.saturdayClosed);
+        sessionStorage.setItem("days-closed-6", array.sundayClosed);
+    });
+
 }
 
 // Write the booking info to the screen - called on the confirmation.html page
@@ -735,6 +871,21 @@ async function postBookings(data) {
     }
 }
 
+async function postVenue(data) {
+    const url = "https://localhost:44375/api/venue";
+
+    try {
+        await fetch(url, {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+    } catch (e) {
+        throw "Failed to post";
+    }
+
+}
+
 // checking whether the form submission is empty or doesnt follow javascript validations
 function formValidate() {
 
@@ -766,7 +917,6 @@ function formValidate() {
 function checkTime() {
 
     var time = document.getElementById("inputTime").value;
-    console.log(time);
 
     var split = time.split(":");
     var min = split[1];

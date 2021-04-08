@@ -13,17 +13,17 @@
                         <div class="col-5">
 
                             <div id="add-booking-placeholder">
-                                <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px" id="column-1">
+                                <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px" id="column-1" onresize="resizeColumns()">
                                     <p id="reservation-header" class="lead form-title" style="text-align: center;"> MAKE CHANGES: </p>
                                     <hr class="my-4">
 
-                                    <form name="reservation" class="was-validated" novalidate>
+                                    <form name="reservation">
                                         <div class="row">
 
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="inputCapacity">Max Venue Capacity:</label>
-                                                    <input type="text" class="form-control" id="inputCapacity" pattern="[0-9]+" required>
+                                                    <input type="text" class="form-control" id="inputCapacity" pattern="[0-9]+">
                                                 </div>
                                             </div>
                                         </div>
@@ -32,7 +32,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="inputOpeningTime">Opening Time:</label>
-                                                    <input type="time" class="form-control flatpickr flatpickr-input" id="inputOpeningTime" data-id="timePicker24" onchange="checkTime()" autocomplete="off" required>
+                                                    <input type="time" class="form-control flatpickr flatpickr-input" id="inputOpeningTime" data-id="timePicker24" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -41,7 +41,7 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="inputClosingTime">Closing Time:</label>
-                                                    <input type="time" class="form-control flatpickr flatpickr-input" id="inputClosingTime" data-id="timePicker24" onchange="checkTime()" autocomplete="off" required>
+                                                    <input type="time" class="form-control flatpickr flatpickr-input" id="inputClosingTime" data-id="timePicker24" autocomplete="off">
                                                 </div>
                                             </div>
                                         </div>
@@ -50,7 +50,76 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label for="inputDaysOff">Days Closed:</label>
-                                                    <input type="text" class="form-control" id="inputDaysOff" pattern="[0-9]+" required>
+
+                                                    <div class="row">
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="monday">
+                                                                <label class="form-check-label" for="monday">
+                                                                    Monday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="tuesday">
+                                                                <label class="form-check-label" for="tuesday">
+                                                                    Tuesday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="wednesday">
+                                                                <label class="form-check-label" for="wednesday">
+                                                                    Wednesday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="thursday">
+                                                                <label class="form-check-label" for="thursday">
+                                                                    Thursday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="friday">
+                                                                <label class="form-check-label" for="friday">
+                                                                    Friday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="saturday">
+                                                                <label class="form-check-label" for="saturday">
+                                                                    Saturday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox" value="" id="sunday">
+                                                                <label class="form-check-label" for="sunday">
+                                                                    Sunday
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -59,7 +128,7 @@
 
                                         <div class="row">
                                             <div class="col">
-                                                <button type="submit" class="btn btn-primary btn-block" id="reservationButton">
+                                                <button type="submit" class="btn btn-primary btn-block" id="venueButton">
                                                     <i data-feather="check"></i>
                                                     Submit Changes
                                                 </button>
@@ -73,7 +142,7 @@
                         <div class="col-5 offset-1">
 
                             <div id="add-booking-placeholder2">
-                                <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px" id="column-2">
+                                <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px" id="column-2" onresize="resizeColumns()">
                                     <p id="reservation-header" class="lead form-title" style="text-align: center;">CURRENT VALUES:</p>
                                     <hr class="my-4">
 
@@ -81,7 +150,7 @@
                                         <div class="col modal-item">
                                             <b>Max Venue Capacity</b>
                                         </div>
-                                        <div class="col modal-record" id="role">
+                                        <div class="col modal-record" id="capacity">
                                             Retrieving...
                                         </div>
                                     </div>
@@ -90,7 +159,7 @@
                                         <div class="col modal-item">
                                             <b>Opening Time</b>
                                         </div>
-                                        <div class="col modal-record" id="forename">
+                                        <div class="col modal-record" id="opening-time">
                                             Retrieving...
                                         </div>
                                     </div>
@@ -99,7 +168,7 @@
                                         <div class="col modal-item">
                                             <b>Closing Time</b>
                                         </div>
-                                        <div class="col modal-record" id="surname">
+                                        <div class="col modal-record" id="closing-time">
                                             Retrieving...
                                         </div>
                                     </div>
@@ -113,31 +182,31 @@
                                     </div>
 
                                     <div class="row show-modal" style="height:auto">
-                                        <div class="col modal-record" style="text-align:center; padding:0">
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-0">
                                             
                                         </div>
-                                        <div class="col modal-record" style="text-align:center; padding:0">
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-1">
                                             
                                         </div>
-                                        <div class="col modal-record" style="text-align:center; padding:0">
-                                            
-                                        </div>
-                                    </div>
-
-                                    <div class="row show-modal" style="height:auto">
-                                        <div class="col modal-record" style="text-align:center; padding:0">
-                                            
-                                        </div>
-                                        <div class="col modal-record" style="text-align:center; padding:0">
-                                            
-                                        </div>
-                                        <div class="col modal-record" style="text-align:center; padding:0">
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-2">
                                             
                                         </div>
                                     </div>
 
                                     <div class="row show-modal" style="height:auto">
-                                        <div class="col modal-record-venue" style="text-align:center">
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-3">
+                                            
+                                        </div>
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-4">
+                                            
+                                        </div>
+                                        <div class="col modal-record" style="text-align:center; padding:0" id="days-closed-5">
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row show-modal" style="height:auto">
+                                        <div class="col modal-record" style="text-align:center; padding:0; padding-bottom:20px" id="days-closed-6">
                                             
                                         </div>
                                     </div>
@@ -152,18 +221,50 @@
 
     <script>
         feather.replace();
+        resizeColumns();
 
-        var col1 = document.querySelector('#column-1').style.height;
-        var col2 = document.querySelector('#column-2').style.height;
+        $('.flatpickr-input:visible').on('focus', function () {
+            $(this).blur()
+        })
+        $('.flatpickr-input:visible').prop('readonly', false)
 
-        console.log(col1)
+        flatpickr(".flatpickr", {});
+        document.getElementById("inputOpeningTime").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            position: "above right",
+            minuteIncrement: "30",
+            defaultHour: 0,
+            defaultMinute: 0,
+        });
 
-        if (col1 < col2) {
-            $("#column-1").height($("#column-2").height());
-        }
-        else {
-            $("#column-2").height($("#column-1").height());
-        }
+        document.getElementById("inputClosingTime").flatpickr({
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            position: "above right",
+            minuteIncrement: "30",
+            defaultHour: 0,
+            defaultMinute: 0,
+        });
+
+
+        function resizeColumns() {
+            var col1 = document.querySelector('#column-1').style.height;
+            var col2 = document.querySelector('#column-2').style.height;
+
+            console.log(col1)
+
+            if (col1 < col2) {
+                $("#column-1").height($("#column-2").height());
+            }
+            else {
+                $("#column-2").height($("#column-1").height());
+            }
+        };
 
     </script>
 
