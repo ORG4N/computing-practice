@@ -93,7 +93,7 @@
                         <div class="form-group">
                             <label for="inputTime">Time:</label>
                             <input type="time" class="form-control flatpickr flatpickr-input" id="inputTime" data-id="timePicker24" onchange="checkTime()" autocomplete="off" required>
-                            <small class="form-text text-muted">Store is open from between: 09:00 and 17:00</small>
+                            <small id ="timeText" class="form-text text-muted"></small>
                         </div>
                     </div>
                 </div>
@@ -120,14 +120,24 @@
     </div>
 
     <script>
-        feather.replace();
-        dateAndTime();
-        checkDate();
+        $.when(fetchVenue()).done(function () {
 
-        $('.flatpickr-input:visible').on('focus', function () {
-            $(this).blur();
-        })
-        $('.flatpickr-input:visible').prop('readonly', false);
+            feather.replace();
+            dateAndTime();
+            checkDate();
+
+            $('.flatpickr-input:visible').on('focus', function () {
+                $(this).blur();
+            })
+
+            $('.flatpickr-input:visible').prop('readonly', false);
+
+            var opening = sessionStorage.getItem("opening-time");
+            var closing = sessionStorage.getItem("closing-time");
+
+            document.getElementById("timeText").innerHTML = "Store is open from between: " + opening + " and " + closing;
+
+        });
     </script>
 
 </body>

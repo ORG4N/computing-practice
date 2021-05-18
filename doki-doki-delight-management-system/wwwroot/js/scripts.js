@@ -7,7 +7,6 @@ $(document).ready(function () {
     $(function () {
         $("#sidebar-placeholder").load('html/nav.html');
         localStorage.setItem("signedIn", "false");
-
     });
 
 
@@ -939,11 +938,49 @@ function dateAndTime() {
     var month = new Date();
     month = new Date(month.getFullYear(), month.getMonth() + 2, 0);
 
+    var opening = sessionStorage.getItem("opening-time");
+    var closing = sessionStorage.getItem("closing-time");
+
+    var closedDates = [];
+
+    if (sessionStorage.getItem("days-closed-0") == "true") {
+        closedDates.push(1);
+    }
+
+    if (sessionStorage.getItem("days-closed-1") == "true") {
+        closedDates.push(2);
+    }
+
+    if (sessionStorage.getItem("days-closed-2") == "true") {
+        closedDates.push(3);
+    }
+
+    if (sessionStorage.getItem("days-closed-3") == "true") {
+        closedDates.push(4);
+    }
+
+    if (sessionStorage.getItem("days-closed-4") == "true") {
+        closedDates.push(5);
+    }
+
+    if (sessionStorage.getItem("days-closed-5") == "true") {
+        closedDates.push(6);
+    }
+
+    if (sessionStorage.getItem("days-closed-6") == "true") {
+        closedDates.push(7);
+    }
+
+    console.log(closedDates);
+
     var picker = new Pikaday({
         field: document.getElementById('inputDate'),
         format: 'DD-MM-YYYY',
         minDate: tomorrow,
         maxDate: month,
+        disableDayFn: function (date) {
+            return (closedDates.includes(date.getDay()));
+        },
     });
 
     flatpickr(".flatpickr", {});
@@ -952,12 +989,12 @@ function dateAndTime() {
         noCalendar: true,
         dateFormat: "H:i",
         time_24hr: true,
-        minTime: "09:00",
-        maxTime: "17:00",
+        minTime: opening,
+        maxTime: closing,
         position: "above right",
         minuteIncrement: "30",
-        defaultHour: 9,
-        defaultMinute: 0,
+        defaultHour: 12,
+        defaultMinute: 0
     });
 }
 
