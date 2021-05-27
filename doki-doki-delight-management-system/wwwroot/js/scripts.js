@@ -78,6 +78,18 @@ $(document).ready(function () {
         });
     });
 
+    // If user clicks the info selection button, take them to the info page where they can report covid signs
+    $(document).on("click", "#infoButton", function () {
+
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/info.html');
+        });
+    });
+
+
     // If user clicks this button then clear all input form data
     $(document).on("click", "#clearButton", function () {
 
@@ -130,7 +142,7 @@ $(document).ready(function () {
                     "occupants": (document.getElementById("inputOccupants").value),
                     "date": (document.getElementById("inputDate").value),
                     "time": (document.getElementById("inputTime").value)
-                };;
+                };
 
                 sessionStorage.setItem("userID", "Retrieving...");
                 sessionStorage.setItem("forename", customer.forename);
@@ -171,6 +183,90 @@ $(document).ready(function () {
                 }
             };
         };
+    });
+
+    $(document).on("click", "#COVIDButton", function (e) {
+        // Stops the page from refreshing (unwanted behaviour in a single page app)
+        e.preventDefault();
+
+        const element = document.getElementById("COVIDButton");
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+        }
+
+        else {
+
+            var forename = document.getElementById("inputForenameCOVID").value;
+            var surname = document.getElementById("inputSurnameCOVID").value;
+            var userID = document.getElementById("inputID").value;
+            var reservationDates = [];
+
+            var reportIDs = [];
+            var reportFinal = [];
+
+
+            var reporteeExists = false;
+
+            $.when($.ajax({
+                url: "https://localhost:44375/api/users",
+                type: "GET",
+                success: function (result) {
+
+                    result.forEach(function (array) {
+                        if (array.userID == userID) {
+                            if (array.forename == forename) {
+                                if (array.surname == surname) {
+
+                                    var reportee = {
+                                        "Forename": forename,
+                                        "Surname": surname,
+                                        "ID": userID
+                                    };
+
+                                    reporteeExists = true;
+                                }
+                            }
+                        }
+                    });
+                }
+            })).done(function () {
+
+                if (reporteeExists == true) {
+                    $.ajax({
+                        url: "https://localhost:44375/api/bookings",
+                        type: "GET",
+                        success: function (result) {
+
+                            result.forEach(function (array) {
+                                if (array.userID == userID) {
+                                    reservationDates.push(array.date);
+                                }
+                            });
+                        }
+                    });
+                }
+            }).done(function () {
+                $.ajax({
+                    url: "https://localhost:44375/api/bookings",
+                    type: "GET",
+                    success: function (result) {
+
+                        result.forEach(function (array) {
+                            reservationDates.forEach(function (array2) {
+
+                                if (array2 == array.date) {
+                                    reportIDs.push(array.userID);
+                                }
+
+                            });
+                        });
+                    }
+                });
+            }).done(function () {
+                console.table(reportIDs);
+            });
+
+        }
     });
 
     // If user clicks this button, their inputs will be verified and they will be given access to the staff dashboard
@@ -431,6 +527,16 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on("click", "#managePassword", function () {
+
+        const element = document.querySelector('#page');
+        element.classList.add('animate__animated', 'animate__slideOutRight');
+
+        element.addEventListener('animationend', () => {
+            $('main').load('html/staff/managePassword.html');
+        });
+    });
+
     $(document).on("click", "#venueButton", function (e) {
         e.preventDefault();
 
@@ -513,6 +619,20 @@ $(document).ready(function () {
             sessionStorage.clear(); // Empty session storage
 
         });
+    });
+
+    $(document).on("click", "#changePasswordButton", function (e) {
+        e.preventDefault();
+
+        const element = document.getElementById("changePasswordButton");
+        if (element.classList.contains("disabled")) {
+            alert("Please wait!");
+        }
+
+        else {
+            var password1 = document.getElementById("inputPassword").value;
+            var password2 = document.getElementById("inputPassword2").value;
+        }
     });
 
     $(document).on("click", "#submitChangesButton", function (e) {

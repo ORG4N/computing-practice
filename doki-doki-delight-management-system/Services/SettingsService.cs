@@ -21,7 +21,7 @@ namespace doki_doki_delight_management_system.Services
 
             try
             {
-                using (FileStream fs = File.Open("wwwroot/data/settings.json", FileMode.Open, FileAccess.Write))
+                using (FileStream fs = File.Open("wwwroot/data/settings.json", FileMode.Create, FileAccess.Write))
                 {
                     using (StreamWriter sw = new StreamWriter(fs))
                     {

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <div id="page" class="animate__animated animate__slideInLeft">
+
+        <!-- Draw the title-->
+        <div class="container-flex">
+            <div class="title animate__animated animate__slideInLeft">
+                <div class="row align-self-end">
+                    <div class="col-12">
+                        <h2> DOKI-DOKI DELIGHT </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Draw a sub-headig that overlaps with title-->
+        <div class="container">
+            <div class="row align-self-end">
+                <div class="col-12" id="headingBox">
+                    <h3>EXTRA INFORMATION:</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4 offset-2">
+
+                <div class="container jumbotron" style="padding-top:15px; padding-bottom:15px;">
+                    <p class="lead form-title" style="text-align: center;">COVID REPORTING: </p>
+                    <p id="reservation-header" class="lead" style="text-align: center;">Please fill out the following fields if you have previously attended a reservation and have since started showing COVID symptoms:</p>
+                    <hr class="my-4">
+                    <form name="reservation" class="was-validated" novalidate>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="inputID" placeholder="User ID" required pattern="[0-9]+" minlength="8" maxlength="8">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="inputForenameCOVID" placeholder="Forename" required>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="inputSurnameCOVID" placeholder="Surname" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-primary btn-block" id="COVIDButton" required>
+                                    <i data-feather="check"></i>
+                                    Submit Report
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

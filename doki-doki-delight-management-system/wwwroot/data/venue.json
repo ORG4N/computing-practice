@@ -1,6 +1,6 @@
 {
-  "Capacity": "67",
-  "OpeningTime": "04:30",
+  "Capacity": "80",
+  "OpeningTime": "00:00",
   "ClosingTime": "23:00",
   "MondayClosed": false,
   "TuesdayClosed": true,
