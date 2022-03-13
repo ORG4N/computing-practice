@@ -1,0 +1,113 @@
+This video is produced by a professional software developer, in which he covers the main responsibilities and events within the SCRUM model. Through the video I learnt that retrospection is an important part of the software development - developers need to be looking at what they have done/are doing and how they can improve. I will need to consistently be tracking what activities I have been performing daily in relation to the COMP1004 project so that I can see if I have stagnated and therefore conclude if I need external advice or to change my current method. This resource is good because it taught me about SCRUM but also enabled me to think about how I, as a software developer, can be successful.
+
+
+NOTES:
+Functional requirements
+Non-functional requirements
+Usability requirements
+Legal, social and ethical requirements
+Interoperability
+
+User stories
+Use case diagrams 
+
+Success criteria 
+Acceptance criteria
+
+
+Functional Requirements
+•	Customer can input:
+o	Phone number
+o	Full name
+o	The amount of attendees
+o	Date and time of reservation
+
+•	Manager can input:
+o	Total number of tables
+o	Number of seats for each table
+o	Opening and closing times
+o	Names and contact info of all staff
+o	Staff shifts
+
+•	Manager must be able to sign into the website – which will show hidden elements
+o	Username
+o	Password
+
+
+•	Customer must be sent a text message of the date and time of the reservation
+•	Customer must be sent a text message if they have come into contact with a confirmed case 
+
+•	Manager must be able to see the 
+
+•	record of all staff working on their premises and shift times on a given day and their contact details
+•	keep these records of customers, visitors and staff for 21 days and make them available when requested by NHS Test and Trace or local public health officials to help contain clusters or outbreaks
+
+
+Throughout the week I have been progressing through the COMP1004 Analysis learning material in-order to understand how to structure my development and planning of my project: Doki-Doki Delight Mangement System.
+
+After watching the video "3.0 Requirements Analysis" it became clear to me that I needed to document my projects requirements. The purpose of writing out these requirements is to categorise and prioritise them and full understand the fundamentals of the Management System. 
+
+However, a further purpose is to later convert and decompose the prioritised requirements into smaller and simpler tasks. These tasks will form the Product Backlog which will eventually be found within the planner. 
+
+The current status of the Requirement Analysis document is incomplete due to only recently starting it and the aim is to be "done" with it on or before 08/11/20. The document can be found as an attachment to this blog post. I have currently completed my initial functional requirements and started to form the template of the document, by introducing the non-functional requirements and the requirements prioritisation. Most of the document is a work in progress and therefore is not fully cleaned up. I will attach the fully complete document within the next blog. 
+
+Although not as big in scope I have also briefly researched a productive layout for the planner - and as a result I have mimicked the Kanban procedure by creating buckets named: To do, In progress, and Done. I have also added a Product Backlog bucket which will soon be updated once I have assimilated all of the required tasks required to achieve a successful product. 
+
+I have no plans to start coding a solution until I am further into the agile lifecycle model.
+
+Retrospection (because this is an important part of Agile): I am going to aim to be more productive throughout the coming weeks and months because I believe throughout this current week I have been distracted from this module in particular. If I were to narrow the reasoning down I would perhaps say it was due to being overwhelmed about where and how to start the project. However, by starting with the requirements analysis I am feeling more confident and sense that I am adequately progressing. 
+
+1.
+	mov eax, 5
+	mov esi, 0
+
+	loop1:
+	inc esi
+	cmp eax, esi
+	jne loop1
+
+2.
+	mov eax, 25
+	mov esi, 0
+	mov edx, 5
+
+	forl:
+	sub eax, edx
+	cmp eax, esi
+	jne forl
+
+3.
+	mov eax, 100
+	mov edx, 0
+	mov esi, 3
+	mov ecx, 2
+	
+	loop1:
+	mov edx, 0
+	cmp eax, esi
+	je loop2
+
+	div ecx
+	jmp loop1
+
+	loop2:
+	INVOKE ExitProcess, 0 ; call exit function
+
+
+FOR EACH ELEMENT IN THE LIST:
+SPLIT ELEMENT USING "," AS DELIMITER
+ADD THE SPLITS TO THE END OF THE LIST
+
+FOR EACH ELEMENT IN THE LIST (NOW WITH THE SPLIT ELEMENTS)
+
+TRY:
+IF TRYPARSE = TRUE
+  PARSE NUMBER
+  IF NUMBER LESS THAN 0
+    ADD NUMBER TO SUM VARIABLE
+
+CATCH OVERFLOWEXCEPTION:
+SET SUM VARIABLE TO INT.MINVALUE
+
+
+RETURN SUM VARIABLE
